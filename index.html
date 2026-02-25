@@ -135,7 +135,7 @@
         .step-card p { font-size: 0.95rem; color: var(--text-medium); line-height: 1.6; margin-top: 0.5rem; }
         .steps-reassurance { text-align: center; background: var(--iron-charcoal); color: white; padding: 1.25rem 2rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; max-width: 700px; margin: 0 auto; }
         .steps-reassurance span { color: var(--iron-yellow); }
-        .how-it-works-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+        .how-it-works-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; max-width: 760px; margin: 0 auto; }
         .how-it-works-left { background: rgba(255,255,255,0.55); padding: 2rem; border-radius: 14px; }
         .how-it-works-right { background: linear-gradient(180deg, rgba(253,185,19,0.06) 0%, rgba(253,185,19,0.02) 100%); border: 1px solid rgba(253,185,19,0.25); border-top: 4px solid var(--iron-yellow); border-radius: 12px; padding: 2rem; box-shadow: 0 12px 28px rgba(0,0,0,0.06); }
         .how-it-works-right h3 { font-size: 1.1rem; color: var(--iron-charcoal); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); font-weight: 800; }
@@ -309,22 +309,24 @@
             .nav.nav-open .nav-links { display: flex; }
         }
 
-        /* ══════════════════════════════════════════
-           #CHECK — LIGHT YELLOW IRON TEXTURE LAYOUT
-        ══════════════════════════════════════════ */
+        /* ╔══════════════════════════════════════════════════╗
+           ║  #CHECK — FINTECH DASHBOARD / LIGHT YELLOW IRON  ║
+           ╚══════════════════════════════════════════════════╝ */
 
         /* Section */
         #check.apply-cta {
             background:
-                linear-gradient(rgba(255, 252, 230, 0.96), rgba(255, 252, 230, 0.96)),
+                linear-gradient(rgba(255, 253, 235, 0.97), rgba(255, 253, 235, 0.97)),
                 url('image_b3f665.png') center / cover no-repeat !important;
             border-top: 6px solid var(--iron-charcoal-deep);
             padding: 7rem 2rem !important;
             position: relative;
             overflow: hidden;
         }
+        /* Neutralize the ::after radial glow on the base class */
+        #check.apply-cta::after { display: none; }
 
-        /* Main grid */
+        /* Grid */
         .funnel-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -334,20 +336,20 @@
             margin: 0 auto;
         }
 
-        /* ── Left column ── */
+        /* ── LEFT: MARKET ACCESS ── */
         .fma-label {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 0.72rem;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.25em;
             color: var(--iron-charcoal);
             opacity: 0.5;
             display: block;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.65rem;
             text-transform: uppercase;
         }
         .fma-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 6rem;
+            font-size: 5.5rem;
             line-height: 0.85;
             color: var(--iron-charcoal-deep);
             margin-bottom: 1.25rem;
@@ -369,7 +371,7 @@
             margin-bottom: 1.75rem;
         }
         .fma-stat {
-            background: rgba(255,255,255,0.88);
+            background: rgba(255,255,255,0.9);
             border: 1px solid rgba(26,37,47,0.1);
             border-top: 3px solid var(--iron-charcoal-deep);
             border-radius: 8px;
@@ -396,7 +398,7 @@
         /* Divider */
         .fma-divider {
             height: 1px;
-            background: linear-gradient(to right, rgba(26,37,47,0.14), transparent);
+            background: linear-gradient(to right, rgba(26,37,47,0.15), transparent);
             margin-bottom: 1.5rem;
         }
 
@@ -417,7 +419,7 @@
             border-radius: 4px;
             border-left: 2px solid transparent;
             line-height: 1.35;
-            transition: border-left-color 0.15s, background 0.15s;
+            transition: border-left-color 0.15s ease, background 0.15s ease;
         }
         .fma-item:hover {
             border-left-color: var(--iron-yellow);
@@ -426,7 +428,7 @@
         .fma-chk {
             color: var(--iron-yellow-dark);
             font-weight: 900;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             flex-shrink: 0;
         }
         .fma-item strong {
@@ -439,21 +441,31 @@
             font-style: italic;
         }
 
-        /* ── Right column: funnel card ── */
+        /* ── RIGHT: COMMAND CENTER CARD ── */
         .funnel-card {
             background: white !important;
             border-radius: 16px;
             width: 100%;
             max-width: 520px;
             box-shadow:
-                0 30px 60px rgba(0,0,0,0.12),
-                0 8px 24px rgba(0,0,0,0.07),
+                0 30px 60px rgba(0,0,0,0.15),
+                0 8px 24px rgba(0,0,0,0.08),
                 0 1px 4px rgba(0,0,0,0.04) !important;
-            border: 1px solid rgba(26,37,47,0.08) !important;
+            border: 1px solid rgba(26,37,47,0.07) !important;
             overflow: hidden;
         }
 
-        /* ── Slim footer ── */
+        /* Input polish */
+        .f-input {
+            padding: 14px 14px 14px 2.75rem !important;
+        }
+        .f-input-prefix {
+            font-weight: 800 !important;
+            color: var(--iron-charcoal-deep) !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* ── SLIM FOOTER ── */
         .footer-slim {
             background: #d1d5db;
             border-top: 1px solid #b6bbc3;
@@ -485,7 +497,7 @@
             transition: color 0.2s;
         }
         .footer-slim-nav a:hover { color: var(--iron-charcoal-deep); text-decoration: underline; }
-        .footer-slim-copy { font-size: 0.72rem; color: var(--iron-charcoal); opacity: 0.65; font-weight: 500; }
+        .footer-slim-copy { font-size: 0.72rem; color: var(--iron-charcoal); opacity: 0.65; }
         .footer-slim-disclaimer {
             max-width: 1280px;
             margin: 1.25rem auto 0;
@@ -495,11 +507,11 @@
             line-height: 1.7;
         }
 
-        /* ── Responsive ── */
+        /* Responsive */
         @media (max-width: 960px) {
             .funnel-layout { grid-template-columns: 1fr; gap: 3rem; }
-            .fma-title { font-size: 4rem; }
-            .fma-body { max-width: 100%; }
+            .fma-title { font-size: 3.75rem; }
+            .fma-body  { max-width: 100%; }
             .footer-slim-inner { flex-direction: column; align-items: flex-start; }
         }
         @media (max-width: 600px) {
@@ -713,22 +725,7 @@
                     </div>
                     <div class="steps-reassurance fade-in"><span>⚡</span> No credit impact. No obligation. Just clarity before you buy.</div>
                 </div>
-                <div class="how-it-works-right fade-in">
-                    <h3>Available Through Yellow Iron Yard</h3>
-                    <ul class="benefits-list">
-                        <li>Application-Only Approvals up to $350,000</li>
-                        <li>Competitive Rates Starting at 5.99%*</li>
-                        <li>No Money Down Options</li>
-                        <li>Flexible 36–84 Month Terms</li>
-                        <li>Deferred Payments up to 120 Days</li>
-                        <li>No Age Restrictions on Equipment (In Many Programs)</li>
-                        <li>Corp Only Approvals (No PG in Select Cases)</li>
-                        <li>Working Capital for Materials and Cash Flow</li>
-                        <li>Startup-Friendly Programs</li>
-                        <li>Options For a Wide Range of Credit Profiles</li>
-                    </ul>
-                    <p class="benefits-disclaimer">*Terms Vary by Lender and Qualifications.</p>
-                </div>
+
             </div>
         </div>
     </section>
@@ -737,7 +734,7 @@
     <section class="apply-cta" id="check">
         <div class="funnel-layout">
 
-            <!-- LEFT: MARKET ACCESS -->
+            <!-- LEFT: MARKET ACCESS DASHBOARD -->
             <div class="fma-col">
                 <span class="fma-label">NETWORK STRENGTH</span>
                 <h2 class="fma-title">Market<br>Access</h2>
@@ -761,17 +758,17 @@
                     <div class="fma-item"><span class="fma-chk">✓</span><span>Rates from <strong>5.99%*</strong></span></div>
                     <div class="fma-item"><span class="fma-chk">✓</span><span><strong>No Money Down</strong> Options</span></div>
                     <div class="fma-item"><span class="fma-chk">✓</span><span>Flexible <strong>36–84 Month</strong> Terms</span></div>
-                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Deferred Payments</strong> 120 Days</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Deferred Payments</strong> up to 120 Days</span></div>
                     <div class="fma-item"><span class="fma-chk">✓</span><span><strong>No Age Restrictions</strong> on Iron</span></div>
-                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Corp Only / No PG</strong> (Select)</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Corp Only / No PG</strong> (Select Cases)</span></div>
                     <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Working Capital</strong> for Materials</span></div>
                     <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Startup-Friendly</strong> Programs</span></div>
                     <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Wide Range</strong> of Credit Profiles</span></div>
                 </div>
                 <p class="fma-footnote">*Terms Vary by Lender and Qualifications.</p>
-            </div>
+            </div><!-- /fma-col -->
 
-            <!-- RIGHT: FUNNEL CARD -->
+            <!-- RIGHT: THE COMMAND CENTER -->
             <div class="funnel-card" id="funnelCard">
                 <div class="funnel-accent"></div>
                 <div class="funnel-body">
