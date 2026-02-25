@@ -309,48 +309,139 @@
             .nav.nav-open .nav-links { display: flex; }
         }
 
-        /* ── ACTION HUB ── */
-        .action-hub { background: var(--iron-charcoal-deep); position: relative; overflow: hidden; }
-        .action-hub::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(253,185,19,0.04) 47px, rgba(253,185,19,0.04) 48px), repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(253,185,19,0.04) 47px, rgba(253,185,19,0.04) 48px); pointer-events: none; z-index: 0; }
-        .ah-grid { display: grid; grid-template-columns: 1.1fr 0.9fr 1fr; max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
-        .ah-col { padding: 4rem 3rem; border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; justify-content: center; }
-        .ah-col:last-child { border-right: none; }
-        .ah-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; color: var(--iron-yellow); opacity: 0.85; display: block; margin-bottom: 1rem; }
-        .ah-col-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: white; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
-        .ah-program-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.5rem; }
-        .ah-program-list li { display: flex; align-items: baseline; gap: 0.75rem; font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
-        .ah-check { color: var(--iron-yellow); font-size: 0.9rem; font-weight: 700; flex-shrink: 0; }
-        .ah-program-list li strong { color: white; font-weight: 700; }
-        .ah-footnote { font-size: 0.7rem; color: rgba(255,255,255,0.28); font-style: italic; }
-        .ah-steps { display: flex; flex-direction: column; }
-        .ah-step { display: flex; align-items: flex-start; gap: 1.25rem; }
-        .ah-step-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.75rem; color: var(--iron-yellow); line-height: 1; min-width: 3rem; }
-        .ah-step-body { display: flex; flex-direction: column; gap: 0.2rem; padding-top: 0.45rem; }
-        .ah-step-body strong { font-size: 0.95rem; color: white; font-weight: 700; }
-        .ah-step-body span { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.45; }
-        .ah-step-connector { width: 1px; height: 2.25rem; margin-left: 1.35rem; background: linear-gradient(to bottom, rgba(253,185,19,0.5), rgba(253,185,19,0.05)); }
-        .ah-gateway { background: rgba(255,255,255,0.018); }
-        .ah-card { background: #fff; border-radius: 10px; padding: 2.25rem; border-top: 4px solid var(--iron-yellow); box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 2px 12px rgba(0,0,0,0.15); }
-        .ah-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; color: var(--iron-charcoal-deep); letter-spacing: 0.03em; margin-bottom: 0.4rem; line-height: 1; }
-        .ah-card-sub { font-size: 0.82rem; color: var(--text-medium); line-height: 1.55; margin-bottom: 1.5rem; }
-        .ah-form { display: flex; flex-direction: column; gap: 0.7rem; }
-        .ah-input-wrap { display: flex; align-items: stretch; border: 2px solid #e2e2e2; border-radius: 6px; overflow: hidden; transition: border-color 0.2s; }
-        .ah-input-wrap:focus-within { border-color: var(--iron-yellow); }
-        .ah-prefix { display: flex; align-items: center; padding: 0 0.9rem; background: #f4f5f6; border-right: 2px solid #e2e2e2; font-weight: 800; font-size: 1.05rem; color: var(--iron-charcoal); }
-        .ah-input { flex: 1; padding: 0.85rem 0.875rem; border: none; outline: none; font-family: 'Work Sans', sans-serif; font-size: 0.92rem; color: var(--iron-charcoal); background: white; }
-        .ah-input::placeholder { color: #bbb; }
-        .ah-btn { display: block; text-align: center; background: var(--iron-yellow); color: var(--iron-charcoal-deep); padding: 0.9rem; border-radius: 6px; font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.1em; text-decoration: none; transition: all 0.2s; }
-        .ah-btn:hover { background: var(--iron-yellow-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(253,185,19,0.4); }
-        .ah-trust { font-size: 0.72rem; color: #999; margin-top: 0.9rem; font-weight: 600; }
-        .footer-slim { background: #0f1a22; border-top: 1px solid rgba(253,185,19,0.1); padding: 1.75rem 2rem 1.5rem; }
-        .footer-slim-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; max-width: 1280px; margin: 0 auto; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .footer-slim-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.08em; color: var(--iron-yellow); }
+        /* ── ACTION HUB: LIGHT YELLOW IRON TEXTURE ── */
+        #check.apply-cta {
+            background:
+                linear-gradient(rgba(255, 252, 230, 0.96), rgba(255, 252, 230, 0.96)),
+                url('image_b3f665.png') center / cover no-repeat !important;
+            border-top: 6px solid var(--iron-charcoal-deep);
+            padding: 7rem 2rem !important;
+            position: relative;
+            overflow: hidden;
+        }
+        .funnel-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .fma-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--iron-charcoal);
+            opacity: 0.55;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .fma-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            line-height: 0.88;
+            color: var(--iron-charcoal-deep);
+            margin-bottom: 1.1rem;
+            letter-spacing: -0.01em;
+        }
+        .fma-body {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            max-width: 420px;
+        }
+        .fma-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+        .fma-stat {
+            background: rgba(255,255,255,0.82);
+            border: 1px solid rgba(26,37,47,0.1);
+            border-top: 3px solid var(--iron-charcoal-deep);
+            border-radius: 8px;
+            padding: 1.1rem 1.25rem;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+        }
+        .fma-stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.25rem;
+            color: var(--iron-charcoal-deep);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+        .fma-stat-lbl {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+        .fma-divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(26,37,47,0.15), transparent);
+            margin-bottom: 1.5rem;
+        }
+        .fma-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .fma-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.45rem;
+            font-size: 0.82rem;
+            color: var(--iron-charcoal);
+            padding: 0.45rem 0.5rem;
+            border-radius: 4px;
+            border-left: 2px solid transparent;
+            line-height: 1.35;
+            transition: all 0.15s ease;
+        }
+        .fma-item:hover {
+            border-left-color: var(--iron-yellow);
+            background: rgba(253,185,19,0.08);
+        }
+        .fma-chk {
+            color: var(--iron-yellow-dark);
+            font-weight: 900;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .fma-item strong { color: var(--iron-charcoal-deep); font-weight: 700; }
+        .fma-footnote { font-size: 0.68rem; color: var(--text-light); font-style: italic; }
+        .funnel-card {
+            background: white !important;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04) !important;
+            border: 1px solid rgba(26,37,47,0.08) !important;
+            overflow: hidden;
+        }
+        .footer-slim { background: #d1d5db; border-top: 1px solid #b8bdc5; padding: 1.75rem 2rem 1.5rem; }
+        .footer-slim-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; max-width: 1280px; margin: 0 auto; padding-bottom: 1.25rem; border-bottom: 1px solid #b4b9c1; }
+        .footer-slim-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.08em; color: var(--iron-charcoal-deep); }
         .footer-slim-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-        .footer-slim-nav a { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-        .footer-slim-nav a:hover { color: var(--iron-yellow); }
-        .footer-slim-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); font-weight: 500; }
-        .footer-slim-disclaimer { max-width: 1280px; margin: 1.25rem auto 0; font-size: 0.7rem; color: rgba(255,255,255,0.18); line-height: 1.7; }
-        @media (max-width: 960px) { .ah-grid { grid-template-columns: 1fr; } .ah-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 3rem 2rem; } .ah-col:last-child { border-bottom: none; } .footer-slim-inner { flex-direction: column; align-items: flex-start; } }
+        .footer-slim-nav a { font-size: 0.78rem; color: var(--iron-charcoal); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+        .footer-slim-nav a:hover { color: var(--iron-charcoal-deep); text-decoration: underline; }
+        .footer-slim-copy { font-size: 0.72rem; color: var(--iron-charcoal); opacity: 0.65; font-weight: 500; }
+        .footer-slim-disclaimer { max-width: 1280px; margin: 1.25rem auto 0; font-size: 0.7rem; color: var(--iron-charcoal); opacity: 0.6; line-height: 1.7; }
+        @media (max-width: 960px) {
+            .funnel-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .fma-title { font-size: 3.5rem; }
+            .fma-body { max-width: 100%; }
+            .footer-slim-inner { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 600px) {
+            .fma-grid { grid-template-columns: 1fr; }
+        }
 </style>
 </head>
 <body id="top">
@@ -580,13 +671,35 @@
     </section>
 
     <!-- BUYING POWER CHECK (EMBEDDED FUNNEL) -->
-    <section class="apply-cta" id="check" style="background: linear-gradient(160deg, #1a252f 0%, #2C3E50 50%, #1a252f 100%); position: relative; overflow: hidden; padding: 5rem 2rem;">
-        <div style="position: absolute; top: -30%; right: -15%; width: 60%; height: 160%; background: #FDB913; transform: skewX(-15deg); opacity: 0.035; pointer-events: none;"></div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(253,185,19,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(253,185,19,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none;"></div>
+    <section class="apply-cta" id="check">
+        <div class="funnel-layout">
 
-        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
+            <!-- LEFT: MARKET ACCESS -->
+            <div class="fma-col">
+                <span class="fma-label">NETWORK STRENGTH</span>
+                <h2 class="fma-title">Market<br>Access</h2>
+                <p class="fma-body">Leverage our 50+ lender network to secure institutional-grade financing terms for any heavy iron deal, nationwide.</p>
+                <div class="fma-stats">
+                    <div class="fma-stat"><span class="fma-stat-num">$10MM+</span><span class="fma-stat-lbl">Max Financing</span></div>
+                    <div class="fma-stat"><span class="fma-stat-num">50+</span><span class="fma-stat-lbl">Lender Network</span></div>
+                </div>
+                <div class="fma-divider"></div>
+                <div class="fma-grid">
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>App-Only</strong> up to $350,000</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span>Rates from <strong>5.99%*</strong></span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>No Money Down</strong> Options</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span>Flexible <strong>36–84 Month</strong> Terms</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Deferred Payments</strong> up to 120 Days</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>No Age Restrictions</strong> on Iron</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Corp Only / No PG</strong> (Select Cases)</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Working Capital</strong> for Materials</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Startup-Friendly</strong> Programs</span></div>
+                    <div class="fma-item"><span class="fma-chk">✓</span><span><strong>Wide Range</strong> of Credit Profiles</span></div>
+                </div>
+                <p class="fma-footnote">*Terms Vary by Lender and Qualifications.</p>
+            </div>
 
-            <!-- FUNNEL CARD -->
+            <!-- RIGHT: FUNNEL CARD -->
             <div class="funnel-card" id="funnelCard">
                 <div class="funnel-accent"></div>
                 <div class="funnel-body">
@@ -732,75 +845,8 @@
     </section>
 
     <!-- FOOTER -->
-    <!-- ACTION HUB -->
-    <section class="action-hub" id="why-us">
-        <div class="ah-grid">
-
-            <!-- LEFT: PROGRAMS -->
-            <div class="ah-col ah-programs">
-                <span class="ah-label">MARKET ACCESS</span>
-                <h3 class="ah-col-title">Available Programs</h3>
-                <ul class="ah-program-list">
-                    <li><span class="ah-check">&#10003;</span><span><strong>App-Only</strong> up to $350,000</span></li>
-                    <li><span class="ah-check">&#10003;</span><span>Rates from <strong>5.99%*</strong></span></li>
-                    <li><span class="ah-check">&#10003;</span><span><strong>No Money Down</strong> Options</span></li>
-                    <li><span class="ah-check">&#10003;</span><span>Flexible <strong>36–84 Month</strong> Terms</span></li>
-                    <li><span class="ah-check">&#10003;</span><span><strong>No Age Restrictions</strong> on Iron</span></li>
-                    <li><span class="ah-check">&#10003;</span><span><strong>Startup-Friendly</strong> Programs</span></li>
-                    <li><span class="ah-check">&#10003;</span><span><strong>Working Capital</strong> Options</span></li>
-                    <li><span class="ah-check">&#10003;</span><span><strong>Corp Only / No PG</strong> (Select Cases)</span></li>
-                </ul>
-                <p class="ah-footnote">*Terms Vary by Lender and Qualifications.</p>
-            </div>
-
-            <!-- MIDDLE: WORKFLOW -->
-            <div class="ah-col ah-system">
-                <span class="ah-label">THE SYSTEM</span>
-                <div class="ah-steps">
-                    <div class="ah-step">
-                        <span class="ah-step-num">01</span>
-                        <div class="ah-step-body">
-                            <strong>Verify Buying Power</strong>
-                            <span>Soft pull, no credit impact.</span>
-                        </div>
-                    </div>
-                    <div class="ah-step-connector"></div>
-                    <div class="ah-step">
-                        <span class="ah-step-num">02</span>
-                        <div class="ah-step-body">
-                            <strong>Auto-Spec Match</strong>
-                            <span>Machine-to-program alignment.</span>
-                        </div>
-                    </div>
-                    <div class="ah-step-connector"></div>
-                    <div class="ah-step">
-                        <span class="ah-step-num">03</span>
-                        <div class="ah-step-body">
-                            <strong>Get Dealer Packet</strong>
-                            <span>Arrive funded and ready to close.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RIGHT: GATEWAY -->
-            <div class="ah-col ah-gateway">
-                <div class="ah-card">
-                    <span class="ah-label" style="color:var(--iron-steel)">START HERE</span>
-                    <h3 class="ah-card-title">Check Buying Power</h3>
-                    <p class="ah-card-sub">Enter your equipment budget — takes 60 seconds, no commitment.</p>
-                    <div class="ah-form">
-                        <div class="ah-input-wrap">
-                            <span class="ah-prefix">$</span>
-                            <input class="ah-input" type="text" placeholder="Equipment Budget" inputmode="numeric" />
-                        </div>
-                        <a href="#check" class="ah-btn">START CHECK &rarr;</a>
-                    </div>
-                    <div class="ah-trust">&#128274; Secure &amp; No Hard Credit Pull</div>
-                </div>
-            </div>
-
-        </div>
+            </div><!-- /funnel-card -->
+        </div><!-- /funnel-layout -->
     </section>
 
     <footer class="footer-slim" id="contact">
@@ -972,4 +1018,8 @@
             });
             document.querySelectorAll('.f-toggle-option input').forEach(function(inp) {
                 inp.addEventListener('change', function() { var e = this.closest('.f-field').querySelector('.f-error'); if (e) e.classList.remove('show'); });
-        
+
+        });
+        </script>
+    </body>
+</html>
