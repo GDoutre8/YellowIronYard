@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellow Iron Yard | The Equipment Buying Platform</title>
+    <meta name="description" content="Check your buying power, get dealer-ready, and move deals forward faster. Yellow Iron Yard connects equipment buyers with financing partners nationwide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --iron-yellow: #FDB913;
+            --iron-yellow-light: #FFD04D;
+            --iron-yellow-dark: #D99A00;
+            --iron-charcoal: #2C3E50;
+            --iron-charcoal-deep: #1a252f;
+            --iron-charcoal-light: #34495e;
+            --iron-steel: #6C7A89;
+            --iron-steel-light: #95a5a6;
+            --text-dark: #1a1a2e;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --bg-light: #f7f8fa;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --gradient-hero: linear-gradient(135deg, #1a252f 0%, #2C3E50 40%, #34495e 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text-dark); line-height: 1.6; background: var(--bg-white); }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Work Sans', sans-serif; font-weight: 800; line-height: 1.15; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: all 0.3s ease; }
+        .nav-container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+        .nav-links a { text-decoration: none; color: var(--text-medium); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--iron-charcoal); }
+        .nav-cta { display: flex; gap: 1rem; align-items: center; }
+        .nav-phone { text-decoration: none; color: var(--iron-charcoal); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; }
+        .nav-phone:hover { color: var(--iron-yellow-dark); }
+
+        /* BUTTONS */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.875rem 1.75rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.25s ease; cursor: pointer; border: none; font-family: 'Work Sans', sans-serif; }
+        .btn-primary { background: var(--iron-yellow); color: var(--iron-charcoal-deep); box-shadow: 0 2px 8px rgba(253,185,19,0.25); }
+        .btn-primary:hover { background: var(--iron-yellow-dark); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(253,185,19,0.35); }
+        .btn-large { padding: 1.125rem 2.5rem; font-size: 1rem; }
+        .btn-white { background: white; color: var(--iron-charcoal-deep); font-weight: 700; }
+        .btn-white:hover { background: var(--iron-yellow); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(253,185,19,0.3); }
+        .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+        .btn-outline:hover { border-color: var(--iron-yellow); color: var(--iron-yellow); transform: translateY(-2px); }
+
+        /* HERO */
+        .hero { background: var(--gradient-hero); min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 80px; }
+        .hero-video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.3; }
+        .hero::before { content: ''; position: absolute; top: -20%; right: -5%; width: 40%; height: 140%; background: var(--iron-yellow); transform: skewX(-12deg); opacity: 0.06; z-index: 1; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.02) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.02) 75%), linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.02) 75%); background-size: 20px 20px; pointer-events: none; z-index: 1; }
+        .hero-container { max-width: 1280px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; position: relative; z-index: 2; }
+        .hero-content { color: white; }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: 4.2rem; margin-bottom: 1.5rem; line-height: 1.0; letter-spacing: 0.02em; }
+        .hero h1 .accent { color: var(--iron-yellow); }
+        .hero-description { font-size: 1.15rem; opacity: 0.85; margin-bottom: 2rem; line-height: 1.7; max-width: 540px; font-weight: 400; }
+        .hero-authority { display: flex; flex-wrap: wrap; gap: 1rem 1.75rem; margin-bottom: 1.25rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+        .hero-authority span { display: flex; align-items: center; gap: 0.35rem; }
+        .hero-cta { display: flex; gap: 1rem; margin-bottom: 3rem; align-items: center; flex-wrap: wrap; }
+        .hero-microcopy { font-size: 0.85rem; opacity: 0.6; font-weight: 500; margin-top: 0.75rem; width: 100%; }
+        .hero-proof { font-size: .9rem; opacity: .7; margin-top: .75rem; max-width: 600px; width: 100%; }
+        .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding-top: 2.5rem; border-top: 1px solid rgba(253,185,19,0.2); }
+        .hero-stat { text-align: center; }
+        .hero-stat h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.75rem; color: var(--iron-yellow); margin-bottom: 0.25rem; }
+        .hero-stat p { font-size: 0.85rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+
+        .hero-visual { position: relative; }
+        .hero-card { background: white; border-radius: 16px; padding: 2.5rem; box-shadow: 0 30px 60px -12px rgba(0,0,0,0.35); transform: rotate(1.5deg); animation: cardFloat 6s ease-in-out infinite; border-top: 4px solid var(--iron-yellow); }
+        @keyframes cardFloat { 0%, 100% { transform: rotate(1.5deg) translateY(0); } 50% { transform: rotate(1.5deg) translateY(-8px); } }
+        .hero-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .hero-card-title { font-size: 1.1rem; color: var(--text-dark); font-weight: 700; }
+        .hero-card-badge { background: rgba(253,185,19,0.15); color: var(--iron-yellow-dark); padding: 0.375rem 0.875rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .hero-card-amount { text-align: center; margin-bottom: 2rem; }
+        .hero-card-amount p { color: var(--text-light); font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+        .hero-card-amount h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--iron-charcoal); }
+        .hero-card-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .hero-card-detail { background: var(--bg-light); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--iron-yellow); }
+        .hero-card-detail p:first-child { font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+        .hero-card-detail p:last-child { font-weight: 700; color: var(--text-dark); font-size: 0.95rem; }
+
+        /* TRUST STRIP */
+        .trust-strip { background: var(--iron-charcoal-deep); padding: 1.75rem 2rem; border-bottom: 3px solid var(--iron-yellow); }
+        .trust-strip-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; }
+        .trust-badge { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+        .trust-badge svg { width: 18px; height: 18px; color: var(--iron-yellow); flex-shrink: 0; }
+        .trust-badge-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.15); }
+
+        /* SECTIONS */
+        .section-container { max-width: 1280px; margin: 0 auto; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+        .section-label { display: inline-block; background: rgba(253,185,19,0.12); color: var(--iron-yellow-dark); padding: 0.5rem 1.25rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+        .section-header h2 { font-size: 2.75rem; color: var(--iron-charcoal); margin-bottom: 1rem; }
+        .section-header p { font-size: 1.1rem; color: var(--text-medium); }
+
+        /* INDUSTRIES */
+        .industries { padding: 6rem 2rem; background: var(--iron-charcoal-deep); position: relative; overflow: hidden; }
+        .industries-video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.75; filter: saturate(0.7) contrast(1.1); }
+        .industries-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(26,37,47,0.55), rgba(26,37,47,0.30) 30%, rgba(26,37,47,0.30) 70%, rgba(26,37,47,0.55)); z-index: 1; }
+        .industries .section-container { position: relative; z-index: 2; }
+        .industries .section-label { background: rgba(253,185,19,0.2); color: var(--iron-yellow); }
+        .industries .section-header h2 { color: white; }
+        .industries .section-header p { color: rgba(255,255,255,0.8); }
+        .industries-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+        .industry-card { background: rgba(255,255,255,0.07); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.75rem 1.25rem; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; cursor: default; }
+        .industry-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--iron-yellow); transform: scaleX(0); transition: transform 0.3s ease; }
+        .industry-card:hover { border-color: var(--iron-yellow); transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.3); background: rgba(255,255,255,0.12); }
+        .industry-card:hover::before { transform: scaleX(1); }
+        .industry-icon { width: 52px; height: 52px; background: rgba(253,185,19,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+        .industry-icon svg { width: 26px; height: 26px; color: var(--iron-yellow); }
+        .industry-card h4 { font-size: 0.95rem; color: white; margin-bottom: 0.35rem; font-weight: 700; }
+        .industry-card p { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
+        .industry-card.featured { border-color: var(--iron-yellow); background: rgba(253,185,19,0.1); }
+        .industry-card.featured::before { transform: scaleX(1); }
+        .industry-card.featured .industry-icon { background: var(--iron-yellow); }
+        .industry-card.featured .industry-icon svg { color: var(--iron-charcoal-deep); }
+        .industries-note { text-align: center; margin-top: 2rem; font-size: 0.95rem; color: rgba(255,255,255,0.75); font-weight: 600; }
+        .industries-note span { color: var(--iron-yellow); }
+
+        /* HOW IT WORKS */
+        .how-it-works { padding: 6rem 2rem; background: linear-gradient(180deg, #f7f8fa 0%, #ffffff 100%); }
+        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
+        .step-card { text-align: left; padding: 2.5rem 2rem 2.5rem 1.75rem; background: white; border-radius: 12px; border: 1px solid var(--border); border-left: 3px solid rgba(253,185,19,0.35); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .step-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(0,0,0,0.08); }
+        .step-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+        .step-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--iron-yellow); line-height: 1; font-weight: 700; opacity: 0.55; min-width: 2.2rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+        .step-card h4 { font-size: 1.2rem; color: var(--iron-charcoal); margin-bottom: 0; }
+        .step-card p { font-size: 0.95rem; color: var(--text-medium); line-height: 1.6; margin-top: 0.5rem; }
+        .steps-reassurance { text-align: center; background: var(--iron-charcoal); color: white; padding: 1.25rem 2rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; max-width: 700px; margin: 0 auto; }
+        .steps-reassurance span { color: var(--iron-yellow); }
+        .how-it-works-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+        .how-it-works-left { background: rgba(255,255,255,0.55); padding: 2rem; border-radius: 14px; }
+        .how-it-works-right { background: linear-gradient(180deg, rgba(253,185,19,0.06) 0%, rgba(253,185,19,0.02) 100%); border: 1px solid rgba(253,185,19,0.25); border-top: 4px solid var(--iron-yellow); border-radius: 12px; padding: 2rem; box-shadow: 0 12px 28px rgba(0,0,0,0.06); }
+        .how-it-works-right h3 { font-size: 1.1rem; color: var(--iron-charcoal); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); font-weight: 800; }
+        .benefits-list { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+        .benefits-list li { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-medium); font-weight: 500; line-height: 1.4; }
+        .benefits-list li:last-child { border-bottom: none; }
+        .benefits-list li::before { content: '✓'; color: var(--iron-yellow-dark); font-weight: 800; flex-shrink: 0; margin-top: 0.05rem; }
+        .benefits-disclaimer { font-size: 0.75rem; color: var(--text-light); margin-top: 0.5rem; }
+        @media (max-width: 900px) { .how-it-works-layout { grid-template-columns: 1fr; } }
+
+        /* EQUIPMENT */
+        /* WHY YELLOW IRON YARD (combined) */
+        .why-us { padding: 6rem 2rem; background: var(--gradient-hero); color: white; position: relative; overflow: hidden; border-top: 1px solid rgba(253,185,19,0.15); }
+        .why-us::before { content: ''; position: absolute; top: -20%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(253,185,19,0.15) 0%, transparent 70%); border-radius: 50%; }
+        .why-us .section-label { background: rgba(253,185,19,0.2); color: var(--iron-yellow); }
+        .why-us .section-header h2 { color: white; margin-bottom: 1.25rem; line-height: 1.2; }
+        .why-us .section-header p { color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 0; }
+        .why-us-content { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; position: relative; z-index: 1; background: rgba(255,255,255,0.03); padding: 2.5rem; border-radius: 18px; }
+        .why-us-programs { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 2rem; box-shadow: 0 10px 22px rgba(0,0,0,0.06); }
+        .why-us-programs h3 { font-size: 1.35rem; color: var(--iron-yellow); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid rgba(253,185,19,0.3); }
+        .program-highlights { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 2.5rem; }
+        .program-highlights li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.9); line-height: 1.5; }
+        .program-highlights li:last-child { border-bottom: none; }
+        .program-highlights li svg { width: 20px; height: 20px; color: var(--iron-yellow); flex-shrink: 0; margin-top: 0.15rem; }
+        @media (max-width: 768px) { .program-highlights { grid-template-columns: 1fr; } }
+        .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .pillar { text-align: left; padding: 1.75rem 2rem 1.75rem 1.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-left: 3px solid rgba(253,185,19,0.35); border-radius: 14px; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; box-shadow: 0 10px 22px rgba(0,0,0,0.06); }
+        .pillar:hover { background: rgba(253,185,19,0.08); border-color: rgba(253,185,19,0.25); transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.12); }
+        .pillar-icon { width: 56px; height: 56px; background: rgba(253,185,19,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 0 1rem; border: 2px solid rgba(253,185,19,0.2); }
+        .pillar-icon svg { width: 28px; height: 28px; color: var(--iron-yellow); }
+        .pillar h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .pillar p { font-size: 0.85rem; opacity: 0.75; line-height: 1.5; }
+
+        /* APPLY CTA */
+        .apply-cta { padding: 6rem 2rem; background: linear-gradient(180deg, #f0f1f4 0%, #f7f8fa 35%, #ffffff 100%); position: relative; overflow: hidden; }
+        .apply-cta::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 600px; background: radial-gradient(ellipse at center, rgba(253,185,19,0.06) 0%, rgba(253,185,19,0.03) 30%, transparent 65%); z-index: 0; pointer-events: none; }
+        .apply-cta-container { max-width: 800px; margin: 0 auto; text-align: center; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 4rem 3rem; position: relative; overflow: hidden; z-index: 1; }
+        .apply-cta-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--iron-yellow) 0%, var(--iron-charcoal) 100%); }
+        .apply-cta h2 { font-size: 2.5rem; color: var(--iron-charcoal); margin-bottom: 1rem; }
+        .apply-cta p { font-size: 1.05rem; color: var(--text-medium); margin-bottom: 0.25rem; max-width: 550px; margin-left: auto; margin-right: auto; }
+        .apply-cta .privacy-note { font-size: 0.8rem; color: var(--text-light); margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+        .apply-cta .privacy-note svg { width: 14px; height: 14px; color: var(--iron-steel); }
+
+        /* FOOTER */
+        .footer { background: var(--iron-charcoal-deep); color: white; padding: 3rem 2rem 2rem; }
+        .footer-container { max-width: 1280px; margin: 0 auto; }
+        .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(253,185,19,0.15); }
+        .footer-brand p { opacity: 0.75; margin: 1rem 0 1.5rem; line-height: 1.7; max-width: 300px; font-size: 0.95rem; }
+        .footer-contact { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-contact a { color: var(--iron-yellow); text-decoration: none; opacity: 0.9; transition: opacity 0.2s; font-weight: 600; }
+        .footer-contact a:hover { opacity: 1; }
+        .footer-links h4 { font-size: 0.8rem; margin-bottom: 1.25rem; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.1em; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.75; transition: all 0.2s; font-size: 0.95rem; }
+        .footer-links a:hover { opacity: 1; color: var(--iron-yellow); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; font-size: 0.85rem; opacity: 0.6; }
+        .footer-legal { display: flex; gap: 2rem; }
+        .footer-legal a { color: white; text-decoration: none; }
+        .footer-legal a:hover { color: var(--iron-yellow); }
+        .footer-privacy { text-align: center; padding-top: 1rem; font-size: 0.8rem; opacity: 0.5; }
+
+        /* MOBILE */
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--iron-charcoal); margin: 5px 0; transition: all 0.3s ease; }
+
+        @media (max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero-description { margin: 0 auto 2rem; }
+            .hero-cta { justify-content: center; }
+            .hero-microcopy { text-align: center; }
+            .hero-proof { text-align: center; margin-left: auto; margin-right: auto; }
+            .hero-visual { display: none; }
+            .industries-grid { grid-template-columns: repeat(3, 1fr); }
+            .steps-grid { grid-template-columns: 1fr; }
+            .why-us-content { grid-template-columns: 1fr; }
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-main { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-stats { grid-template-columns: 1fr; gap: 1.25rem; }
+            .section-header h2 { font-size: 2rem; }
+            .industries-grid { grid-template-columns: 1fr 1fr; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .trust-strip-container { gap: 1rem; }
+            .trust-badge { font-size: 0.75rem; }
+            .trust-badge-divider { display: none; }
+            .apply-cta-container { padding: 2.5rem 1.5rem; }
+            .apply-cta h2 { font-size: 1.75rem; }
+            .footer-main { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+        @media (max-width: 480px) { .industries-grid { grid-template-columns: 1fr; } }
+
+        /* EMBEDDED FUNNEL */
+        .funnel-card { background: #fff; border-radius: 16px; width: 100%; max-width: 520px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 40px rgba(0,0,0,0.25); overflow: hidden; }
+        .funnel-accent { height: 4px; background: linear-gradient(90deg, #FDB913, #D99A00); }
+        .funnel-body { padding: 2rem 1.75rem 2.25rem; }
+        .funnel-progress { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; }
+        .funnel-prog-step { flex: 1; height: 4px; background: var(--border); border-radius: 4px; position: relative; overflow: hidden; transition: all 0.3s; }
+        .funnel-prog-step.active, .funnel-prog-step.done { background: var(--iron-yellow); }
+        .funnel-prog-step.active::after { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent); animation: funnelShimmer 2s infinite; }
+        @keyframes funnelShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+        .funnel-prog-label { font-size: 0.75rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+        .funnel-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--iron-charcoal); letter-spacing: 0.02em; line-height: 1.1; margin-bottom: 0.35rem; }
+        .funnel-sub { font-size: 0.9rem; color: var(--text-medium); margin-bottom: 1.75rem; line-height: 1.5; }
+        .funnel-step { display: none; }
+        .funnel-step.active { display: block; animation: funnelFadeIn 0.35s ease-out; }
+        .funnel-loader { display: none; text-align: center; padding: 3rem 1.5rem; }
+        .funnel-loader.active { display: block; animation: funnelFadeIn 0.4s ease-out; }
+        .funnel-result { display: none; }
+        .funnel-result.active { display: block; animation: funnelFadeIn 0.5s ease-out; }
+        @keyframes funnelFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .f-field { margin-bottom: 1.25rem; }
+        .f-label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--iron-charcoal); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+        .f-input { width: 100%; padding: 0.9rem 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: 'Work Sans', sans-serif; font-size: 1rem; font-weight: 500; color: var(--text-dark); background: #fff; transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none; appearance: none; min-height: 54px; }
+        .f-input:focus { outline: none; border-color: var(--iron-yellow); box-shadow: 0 0 0 3px rgba(253,185,19,0.15); }
+        .f-input::placeholder { color: var(--text-light); font-weight: 400; }
+        .f-input.error { border-color: #e74c3c; }
+        .f-error { font-size: 0.75rem; color: #e74c3c; font-weight: 600; margin-top: 0.3rem; display: none; }
+        .f-error.show { display: block; }
+        .f-select-wrap { position: relative; }
+        .f-select-wrap::after { content: ''; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--iron-steel); pointer-events: none; }
+        .f-select-wrap select { padding-right: 2.5rem; cursor: pointer; }
+        .f-toggle-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .f-toggle-option { position: relative; }
+        .f-toggle-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .f-toggle-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9rem 1rem; min-height: 54px; border: 2px solid var(--border); border-radius: 8px; font-family: 'Work Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-medium); background: #fff; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .f-toggle-btn:active { transform: scale(0.98); }
+        .f-toggle-option input:checked + .f-toggle-btn { border-color: var(--iron-yellow); background: rgba(253,185,19,0.08); color: var(--iron-charcoal); box-shadow: 0 0 0 3px rgba(253,185,19,0.12); }
+        .f-toggle-check { width: 18px; height: 18px; background: var(--iron-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+        .f-toggle-check svg { color: var(--iron-charcoal-deep); }
+        .f-toggle-option input:checked + .f-toggle-btn .f-toggle-check { opacity: 1; }
+        .f-micro-trust { display: flex; align-items: center; gap: 0.35rem; margin-top: 0.4rem; font-size: 0.75rem; color: var(--text-light); font-weight: 500; }
+        .f-btn-row { margin-top: 2rem; display: flex; gap: 0.75rem; }
+        .f-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 1.75rem; min-height: 54px; border-radius: 8px; font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.25s; text-decoration: none; }
+        .f-btn-primary { flex: 1; background: var(--iron-yellow); color: var(--iron-charcoal-deep); box-shadow: 0 2px 8px rgba(253,185,19,0.3); }
+        .f-btn-primary:hover { background: var(--iron-yellow-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(253,185,19,0.4); }
+        .f-btn-back { background: transparent; color: var(--text-light); border: 2px solid var(--border); padding: 1rem 1.25rem; }
+        .f-btn-back:hover { border-color: var(--iron-steel); color: var(--text-medium); }
+        .f-spinner { width: 56px; height: 56px; border: 4px solid var(--border); border-top-color: var(--iron-yellow); border-radius: 50%; animation: funnelSpin 0.8s linear infinite; margin: 0 auto 1.75rem; }
+        @keyframes funnelSpin { to { transform: rotate(360deg); } }
+        .f-loader-text { font-size: 1rem; font-weight: 600; color: var(--iron-charcoal); min-height: 1.6em; transition: opacity 0.3s; }
+        .f-loader-sub { font-size: 0.8rem; color: var(--text-light); margin-top: 0.75rem; }
+        .f-result-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: #e8f8ef; color: #27ae60; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.25rem; }
+        .f-result-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.65rem; color: var(--iron-charcoal); line-height: 1.1; margin-bottom: 0.5rem; }
+        .f-result-body { font-size: 0.95rem; color: var(--text-medium); line-height: 1.6; margin-bottom: 1.75rem; }
+        .f-summary { background: var(--bg-light); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.75rem; }
+        .f-summary-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .f-summary-row:last-child { border-bottom: none; }
+        .f-summary-label { font-size: 0.78rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+        .f-summary-value { font-size: 0.9rem; font-weight: 700; color: var(--iron-charcoal); }
+        .f-btn-docusign { width: 100%; background: var(--iron-yellow); color: var(--iron-charcoal-deep); box-shadow: 0 2px 8px rgba(253,185,19,0.3); font-size: 1rem; padding: 1.1rem 1.75rem; min-height: 56px; }
+        .f-btn-docusign:hover { background: var(--iron-yellow-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(253,185,19,0.4); }
+        .f-exit-safety { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 1rem; font-size: 0.78rem; color: var(--text-light); line-height: 1.5; }
+
+        @media (max-width: 480px) {
+            .funnel-body { padding: 1.5rem 1.25rem 1.75rem; }
+            .funnel-title { font-size: 1.5rem; }
+        }
+
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+            @media (max-width: 900px) {
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 1.5rem; box-shadow: 0 10px 24px rgba(0,0,0,0.08); gap: 1.25rem; z-index: 999; }
+            .nav.nav-open .nav-links { display: flex; }
+        }
+</style>
+</head>
+<body id="top">
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#top" class="logo" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--iron-charcoal); letter-spacing: 0.06em; line-height: 1;">
+                <span style="color: var(--iron-yellow-dark);">Yellow Iron</span> Yard
+            </a>
+            <div class="nav-links">
+                <a href="#top">Home</a>
+                <a href="#how-it-works">Financing Programs</a>
+                <a href="#why-us">Vendor Partners</a>
+            </div>
+            <div class="nav-cta">
+                <a href="tel:+1XXXXXXXXXX" class="nav-phone">📞 (XXX) XXX-XXXX</a>
+                <a href="#check" class="btn btn-primary">Check Buying Power</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <video class="hero-video-bg" autoplay muted loop playsinline aria-hidden="true">
+            <source src="yellowironyard-bg.mp4" type="video/mp4">
+        </video>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-authority">
+                    <span>● Dealer-Ready Buyers</span>
+                    <span>● Partner Financing Network</span>
+                </div>
+                <h1>The Equipment <span class="accent">Buying Platform</span></h1>
+                <p class="hero-description">Marketplace access to financing options to confirm your buying power and move equipment deals forward — nationwide.</p>
+                <div class="hero-cta">
+                    <a href="#check" class="btn btn-primary btn-large">Check Buying Power</a>
+                    <a href="#why-us" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; font-weight: 600; text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s;" onmouseover="this.style.color='#FDB913'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Vendor Partners →</a>
+                    <p class="hero-microcopy">Soft Credit Check &bull; No Obligation &bull; See Options in 24 Hours</p>
+                    <p class="hero-proof">Dealers: Send this to your customers so they arrive ready to buy. Buyers: Know exactly where you stand before you negotiate.</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><h3>60 Seconds</h3><p>Buying Power Check</p></div>
+                    <div class="hero-stat"><h3>$2M+</h3><p>Equipment Budgets</p></div>
+                    <div class="hero-stat"><h3>50</h3><p>States Covered</p></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <h4 class="hero-card-title" style="font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.06em;">PRE-APPROVED</h4>
+                        <span class="hero-card-badge">Dealer-Ready</span>
+                    </div>
+                    <div class="hero-card-amount"><p>Equipment Budget</p><h2>$285,000</h2></div>
+                    <div class="hero-card-details">
+                        <div class="hero-card-detail"><p>Buying Power</p><p>Confirmed</p></div>
+                        <div class="hero-card-detail"><p>Credit Pull</p><p>Soft Pull</p></div>
+                        <div class="hero-card-detail"><p>Check Time</p><p>60 Seconds</p></div>
+                        <div class="hero-card-detail"><p>Equipment</p><p>CAT Excavator</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust-strip">
+        <div class="trust-strip-container">
+            <div class="trust-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                App-Only up to $350K
+            </div>
+            <div class="trust-badge-divider"></div>
+            <div class="trust-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                Same-Day Decisions
+            </div>
+            <div class="trust-badge-divider"></div>
+            <div class="trust-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Zero Down Available
+            </div>
+            <div class="trust-badge-divider"></div>
+            <div class="trust-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                New &amp; Used Equipment
+            </div>
+            <div class="trust-badge-divider"></div>
+            <div class="trust-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                Startup-Friendly Programs
+            </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES WE FINANCE -->
+    <section class="industries" id="industries">
+        <video class="industries-video-bg" autoplay muted loop playsinline>
+            <source src="industries_background_v2_mp4.mp4" type="video/mp4">
+        </video>
+        <div class="industries-overlay"></div>
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Industries We Serve</span>
+                <h2>If Equipment Runs Your Business, We'll Get You Dealer-Ready</h2>
+                <p>Yellow iron is our roots. We help equipment buyers across every sector know their buying power.</p>
+            </div>
+            <div class="industries-grid">
+                <!-- Featured: Construction -->
+                <div class="industry-card featured fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                    </div>
+                    <h4>Construction &amp; Heavy Equipment</h4>
+                    <p>Our specialty&mdash;excavators, dozers, loaders, and more</p>
+                </div>
+                <!-- Towing -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+                    </div>
+                    <h4>Towing &amp; Transport</h4>
+                    <p>Wreckers, rotators, rollbacks, recovery vehicles</p>
+                </div>
+                <!-- Auto Body -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </div>
+                    <h4>Auto Body &amp; Automotive</h4>
+                    <p>Lifts, paint booths, frame machines, shop equipment</p>
+                </div>
+                <!-- Disposal & Waste -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                    </div>
+                    <h4>Disposal &amp; Waste</h4>
+                    <p>Vacuum trucks, roll-offs, dumpsters, compactors</p>
+                </div>
+                <!-- Manufacturing -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg>
+                    </div>
+                    <h4>Manufacturing &amp; Industrial</h4>
+                    <p>CNC machines, routers, presses, conveyors</p>
+                </div>
+                <!-- Trucks & Trailers -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" /></svg>
+                    </div>
+                    <h4>Trucks &amp; Trailers</h4>
+                    <p>Dump trucks, flatbeds, reefers, lowboys, day cabs</p>
+                </div>
+                <!-- Forestry -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                    </div>
+                    <h4>Forestry &amp; Tree Care</h4>
+                    <p>Chippers, stump grinders, bucket trucks, skidders</p>
+                </div>
+                <!-- Gyms & Fitness -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                    </div>
+                    <h4>Gyms &amp; Fitness Studios</h4>
+                    <p>Equipment packages, buildouts, studio launches</p>
+                </div>
+                <!-- Franchise -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    </div>
+                    <h4>Multi-Unit Franchises</h4>
+                    <p>QSR, fitness, entertainment, health &amp; wellness</p>
+                </div>
+                <!-- More -->
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                    </div>
+                    <h4>And More</h4>
+                    <p>If it's business-essential equipment, let's talk</p>
+                </div>
+            </div>
+            <p class="industries-note fade-in"><span>★</span> Don't see your industry? We can still help. <a href="#check" style="color: var(--iron-yellow); font-weight: 700;">Check your buying power &rarr;</a></p>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Financing Programs</span>
+                <h2>How It Works</h2>
+            </div>
+            <div class="how-it-works-layout">
+                <div class="how-it-works-left">
+                    <div class="steps-grid">
+                        <div class="step-card fade-in"><div class="step-header"><div class="step-number">01</div><h4>Check Buying Power</h4></div><p>Takes about 60 seconds. Tell us what equipment you're looking for and see your financing options upfront — no surprises later.</p></div>
+                        <div class="step-card fade-in"><div class="step-header"><div class="step-number">02</div><h4>Get Pre-Approved</h4></div><p>Review your options and confirm a few details. We connect you with competitive financing so you can negotiate and buy with confidence.</p></div>
+                        <div class="step-card fade-in"><div class="step-header"><div class="step-number">03</div><h4>Choose Your Equipment</h4></div><p>Find the right machine and move forward quickly. We coordinate the financing so you can close the deal and get to work faster.</p></div>
+                    </div>
+                    <div class="steps-reassurance fade-in"><span>⚡</span> No credit impact. No obligation. Just clarity before you buy.</div>
+                </div>
+                <div class="how-it-works-right fade-in">
+                    <h3>Available Through Yellow Iron Yard</h3>
+                    <ul class="benefits-list">
+                        <li>Application-Only Approvals up to $350,000</li>
+                        <li>Competitive Rates Starting at 5.99%*</li>
+                        <li>No Money Down Options</li>
+                        <li>Flexible 36–84 Month Terms</li>
+                        <li>Deferred Payments up to 120 Days</li>
+                        <li>No Age Restrictions on Equipment (In Many Programs)</li>
+                        <li>Corp Only Approvals (No PG in Select Cases)</li>
+                        <li>Working Capital for Materials and Cash Flow</li>
+                        <li>Startup-Friendly Programs</li>
+                        <li>Options For a Wide Range of Credit Profiles</li>
+                    </ul>
+                    <p class="benefits-disclaimer">*Terms Vary by Lender and Qualifications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY BUYERS USE YIY FIRST -->
+    <section style="background: linear-gradient(180deg, #f7f8fa 0%, #ffffff 100%); padding: 5rem 2rem;">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Why Yellow Iron Yard</span>
+                <h2>Why Buyers Use Yellow Iron Yard First</h2>
+                <p class="section-subtext">Before visiting a dealer, buyers use Yellow Iron Yard to understand their real purchasing power and financing paths.</p>
+            </div>
+            <div class="pillars-grid" style="margin-top: 2.5rem;">
+                <div class="pillar" style="background: white; border: 1px solid var(--border); border-left: 3px solid rgba(253,185,19,0.35);">
+                    <div class="pillar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <h3 style="color: var(--iron-charcoal);">Know Your Budget Before Negotiating</h3>
+                    <p style="color: var(--text-medium);">Walk into dealerships with clarity instead of guessing what you qualify for.</p>
+                </div>
+                <div class="pillar" style="background: white; border: 1px solid var(--border); border-left: 3px solid rgba(253,185,19,0.35);">
+                    <div class="pillar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </div>
+                    <h3 style="color: var(--iron-charcoal);">Marketplace, Not One Lender</h3>
+                    <p style="color: var(--text-medium);">We connect buyers with multiple financing partners to find competitive options.</p>
+                </div>
+                <div class="pillar" style="background: white; border: 1px solid var(--border); border-left: 3px solid rgba(253,185,19,0.35);">
+                    <div class="pillar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    </div>
+                    <h3 style="color: var(--iron-charcoal);">Soft Credit Prequalification</h3>
+                    <p style="color: var(--text-medium);">Check buying power without impacting your credit score.</p>
+                </div>
+                <div class="pillar" style="background: white; border: 1px solid var(--border); border-left: 3px solid rgba(253,185,19,0.35);">
+                    <div class="pillar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </div>
+                    <h3 style="color: var(--iron-charcoal);">Built for Equipment Buyers</h3>
+                    <p style="color: var(--text-medium);">Designed specifically for contractors, operators, and equipment-driven businesses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS CTA -->
+    <div style="text-align: center; padding: 3rem 2rem; background: #ffffff;">
+        <h3 style="font-size: 1.75rem; color: var(--iron-charcoal); margin-bottom: 1.25rem; font-family: 'Work Sans', sans-serif; font-weight: 800;">Ready to see what you qualify for?</h3>
+        <a href="#check" class="btn btn-primary btn-large">Check Buying Power</a>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light); font-weight: 500;">Soft credit check &bull; No obligation &bull; Takes about 60 seconds</p>
+    </div>
+
+    <!-- WHY YELLOW IRON CAPITAL -->
+    <section class="why-us" id="why-us">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Why Yellow Iron Yard</span>
+                <h2>Where Ready Buyers Meet Ready Dealers</h2>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 0.75rem;">Dealers: Send buyers here first — they'll show up with buying power confirmation.</p>
+                <p>We help buyers know their buying power and dealers close deals faster&mdash;through a trusted partner network.</p>
+                <p style="font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-top: 0.5rem;">Dealers: Send this tool to your customers. Buyers: Walk in prepared.</p>
+            </div>
+            <div class="why-us-content">
+                <div class="why-us-programs fade-in">
+                    <h3>What You Get</h3>
+                    <ul class="program-highlights">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> 60-Second Buying Power Check</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Financing Paths from $25K &ndash; $2M+</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Soft Credit Pull Only</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> New &amp; Used Equipment Welcome</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Startup-Friendly Options</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Partner Network Access</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Dealer-Ready Confirmation</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> No Obligation, No Commitment</li>
+                    </ul>
+                </div>
+                <div class="fade-in">
+                    <div class="pillars-grid">
+                        <div class="pillar">
+                            <div class="pillar-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
+                            <h3>Equipment Expertise</h3>
+                            <p>We know iron. We know equipment. We understand your business&mdash;not just your credit score.</p>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg></div>
+                            <h3>Creative Structuring</h3>
+                            <p>Multiple lender relationships mean we can work around seasonal cash flow, credit challenges, and complex deals.</p>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+                            <h3>Speed That Matters</h3>
+                            <p>60-second buying power check. No paperwork, no waiting rooms, no runaround.</p>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
+                            <h3>Dealer Acceleration</h3>
+                            <p>Dealers send buyers here. Buyers arrive ready. Deals move forward faster for everyone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUYING POWER CHECK (EMBEDDED FUNNEL) -->
+    <section class="apply-cta" id="check" style="background: linear-gradient(160deg, #1a252f 0%, #2C3E50 50%, #1a252f 100%); position: relative; overflow: hidden; padding: 5rem 2rem;">
+        <div style="position: absolute; top: -30%; right: -15%; width: 60%; height: 160%; background: #FDB913; transform: skewX(-15deg); opacity: 0.035; pointer-events: none;"></div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(253,185,19,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(253,185,19,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none;"></div>
+
+        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
+
+            <!-- FUNNEL CARD -->
+            <div class="funnel-card" id="funnelCard">
+                <div class="funnel-accent"></div>
+                <div class="funnel-body">
+
+                    <!-- Progress -->
+                    <div class="funnel-progress" id="funnelProgress">
+                        <div class="funnel-prog-step active" id="fprog1"></div>
+                        <div class="funnel-prog-step" id="fprog2"></div>
+                        <span class="funnel-prog-label" id="fprogLabel">Step 1 of 2</span>
+                    </div>
+
+                    <!-- STEP 1 -->
+                    <div class="funnel-step active" id="fstep1">
+                        <h2 class="funnel-title">Check Your Equipment Buying Power</h2>
+                        <p class="funnel-sub">Explore approval options — soft credit pull only.</p>
+
+                        <div class="f-field">
+                            <label class="f-label" for="fname">Full Name</label>
+                            <input class="f-input" id="fname" type="text" placeholder="John Smith" autocomplete="name">
+                            <div class="f-error" id="fnameErr">Please enter your name</div>
+                        </div>
+                        <div class="f-field">
+                            <label class="f-label" for="femail">Email</label>
+                            <input class="f-input" id="femail" type="email" placeholder="john@company.com" autocomplete="email" inputmode="email">
+                            <div class="f-error" id="femailErr">Please enter a valid email</div>
+                        </div>
+                        <div class="f-field">
+                            <label class="f-label" for="fphone">Phone</label>
+                            <input class="f-input" id="fphone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" inputmode="tel">
+                            <div class="f-error" id="fphoneErr">Please enter a valid phone number</div>
+                        </div>
+                        <div class="f-field">
+                            <label class="f-label" for="fbudget">Estimated Equipment Budget</label>
+                            <div class="f-select-wrap">
+                                <select class="f-input" id="fbudget">
+                                    <option value="" disabled selected>Select a range</option>
+                                    <option value="25k-50k">$25,000 – $50,000</option>
+                                    <option value="50k-100k">$50,000 – $100,000</option>
+                                    <option value="100k-250k">$100,000 – $250,000</option>
+                                    <option value="250k-500k">$250,000 – $500,000</option>
+                                    <option value="500k-1m">$500,000 – $1,000,000</option>
+                                    <option value="1m-plus">$1,000,000+</option>
+                                </select>
+                            </div>
+                            <div class="f-error" id="fbudgetErr">Please select a budget range</div>
+                        </div>
+                        <div class="f-field">
+                            <label class="f-label">How Many Pieces?</label>
+                            <div class="f-toggle-group">
+                                <label class="f-toggle-option">
+                                    <input type="radio" name="funitCount" value="single">
+                                    <div class="f-toggle-btn"><span class="f-toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Single Piece</div>
+                                </label>
+                                <label class="f-toggle-option">
+                                    <input type="radio" name="funitCount" value="multiple">
+                                    <div class="f-toggle-btn"><span class="f-toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Multiple Units</div>
+                                </label>
+                            </div>
+                            <div class="f-error" id="funitErr">Please select one</div>
+                        </div>
+                        <div class="f-btn-row">
+                            <button class="f-btn f-btn-primary" id="fbtnNext">Next <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="funnel-step" id="fstep2">
+                        <h2 class="funnel-title">Readiness Profile</h2>
+                        <p class="funnel-sub">A few quick details to match you with the right financing paths.</p>
+
+                        <div class="f-field">
+                            <label class="f-label" for="ftimeBiz">Time in Business</label>
+                            <div class="f-select-wrap">
+                                <select class="f-input" id="ftimeBiz">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="under-2">Under 2 Years</option>
+                                    <option value="2-5">2 – 5 Years</option>
+                                    <option value="5-plus">5+ Years</option>
+                                </select>
+                            </div>
+                            <div class="f-error" id="ftimeErr">Please select one</div>
+                        </div>
+                        <div class="f-field">
+                            <label class="f-label" for="fcredit">Credit Range</label>
+                            <div class="f-select-wrap">
+                                <select class="f-input" id="fcredit">
+                                    <option value="" disabled selected>Select your range</option>
+                                    <option value="740-plus">740+</option>
+                                    <option value="700-740">700 – 740</option>
+                                    <option value="650-700">650 – 700</option>
+                                    <option value="600-650">600 – 650</option>
+                                    <option value="under-600">Below 600</option>
+                                </select>
+                            </div>
+                            <div class="f-micro-trust"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;color:#27ae60;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Estimate only — does not affect your credit.</div>
+                            <div class="f-error" id="fcreditErr">Please select one</div>
+                        </div>
+                        <div class="f-field">
+                            <label class="f-label">Past Equipment Financing?</label>
+                            <div class="f-toggle-group">
+                                <label class="f-toggle-option">
+                                    <input type="radio" name="fpastFin" value="yes">
+                                    <div class="f-toggle-btn"><span class="f-toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Yes</div>
+                                </label>
+                                <label class="f-toggle-option">
+                                    <input type="radio" name="fpastFin" value="no">
+                                    <div class="f-toggle-btn"><span class="f-toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> No</div>
+                                </label>
+                            </div>
+                            <div class="f-error" id="fpastErr">Please select one</div>
+                        </div>
+                        <div class="f-btn-row">
+                            <button class="f-btn f-btn-back" id="fbtnBack"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12"/></svg></button>
+                            <button class="f-btn f-btn-primary" id="fbtnSubmit">Check Buying Power <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></button>
+                        </div>
+                    </div>
+
+                    <!-- LOADER -->
+                    <div class="funnel-loader" id="floader">
+                        <div class="f-spinner"></div>
+                        <div class="f-loader-text" id="floaderText">Reviewing your project details...</div>
+                        <div class="f-loader-sub">This takes just a moment</div>
+                    </div>
+
+                    <!-- RESULT -->
+                    <div class="funnel-result" id="fresult">
+                        <div class="f-result-badge"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Financing Paths Identified</div>
+                        <h2 class="f-result-title">We've Identified Potential Financing Paths for Your Equipment Budget</h2>
+                        <p class="f-result-body">Based on your readiness profile, our partner network has options aligned with your project scope.</p>
+                        <div class="f-summary" id="fsummary"></div>
+                        <a class="f-btn f-btn-docusign" id="fbtnDocusign" href="#"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Fast-Track Financing Review</a>
+                        <div class="f-exit-safety"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;color:#6C7A89;flex-shrink:0;margin-top:2px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg> <span>Review your details via DocuSign before anything is submitted to our partner network.</span></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.75rem; color: rgba(255,255,255,0.4); font-weight: 600;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="rgba(253,185,19,0.5)" stroke-width="2" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                No credit impact &bull; Soft pull only &bull; Your info stays private
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="#top" class="logo" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: white; letter-spacing: 0.06em; text-decoration: none; line-height: 1;">
+                        <span style="color: var(--iron-yellow);">Yellow Iron</span> Yard
+                    </a>
+                    <p>Know your buying power before you visit the dealer. Yellow Iron Yard connects equipment buyers with financing partners nationwide.</p>
+                    <div class="footer-contact">
+                        <a href="mailto:Sales@YellowIronYard.com">Sales@YellowIronYard.com</a>
+                        <p style="opacity: 0.5; margin-top: 0.5rem; font-size: 0.85rem;">Yellow Iron Yard &bull; Providence, RI &bull; Serving All 50 States</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="#check">Check Buying Power</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#industries">Industries</a></li>
+                        <li><a href="#why-us">Why Yellow Iron Yard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="#industries">Construction</a></li>
+                        <li><a href="#industries">Towing &amp; Transport</a></li>
+                        <li><a href="#industries">Manufacturing</a></li>
+                        <li><a href="#industries">Trucks &amp; Trailers</a></li>
+                        <li><a href="#industries">Franchises</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#why-us">Why Us</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(253,185,19,0.15); padding-top: 2rem; margin-bottom: 1.5rem; text-align: center;">
+                <p style="font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.35rem;">Yellow Iron Yard LLC</p>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 0.25rem;">Equipment Acquisition &amp; Financing Marketplace</p>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Nationwide Financing Solutions for Equipment Buyers &amp; Dealers</p>
+                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem;">Providence, Rhode Island (Nationwide Service)</p>
+            <div class="footer-privacy">We do not sell your information.</div>
+            <div style="text-align: center; padding-top: 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.35); line-height: 1.6; max-width: 760px; margin: 0 auto;">
+                Soft credit inquiries may be used for prequalification and will not impact your credit score. Financing programs are subject to lender approval and applicant qualifications. Yellow Iron Yard is an equipment finance marketplace and broker that connects businesses with independent financing providers and does not directly lend funds. Terms and conditions apply.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Nav shadow on scroll
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.1)' : 'none';
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ── EMBEDDED FUNNEL LOGIC ──
+        (function() {
+            const fd = { name:'', email:'', phone:'', budget:'', unitCount:'', timeBiz:'', credit:'', pastFin:'' };
+
+            const fphone = document.getElementById('fphone');
+            fphone.addEventListener('input', function() {
+                let v = this.value.replace(/\D/g, '').slice(0,10);
+                if (v.length >= 7) this.value = '(' + v.slice(0,3) + ') ' + v.slice(3,6) + '-' + v.slice(6);
+                else if (v.length >= 4) this.value = '(' + v.slice(0,3) + ') ' + v.slice(3);
+                else if (v.length > 0) this.value = '(' + v;
+            });
+
+            function clearErrs() {
+                document.querySelectorAll('.f-input.error').forEach(el => el.classList.remove('error'));
+                document.querySelectorAll('.f-error').forEach(el => el.classList.remove('show'));
+            }
+            function showErr(inputId, errId) {
+                var inp = document.getElementById(inputId);
+                var err = document.getElementById(errId);
+                if (inp) inp.classList.add('error');
+                if (err) err.classList.add('show');
+            }
+
+            function valStep1() {
+                clearErrs(); let ok = true;
+                if (!document.getElementById('fname').value.trim()) { showErr('fname','fnameErr'); ok = false; }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('femail').value)) { showErr('femail','femailErr'); ok = false; }
+                if (document.getElementById('fphone').value.replace(/\D/g,'').length < 10) { showErr('fphone','fphoneErr'); ok = false; }
+                if (!document.getElementById('fbudget').value) { showErr('fbudget','fbudgetErr'); ok = false; }
+                if (!document.querySelector('input[name="funitCount"]:checked')) { document.getElementById('funitErr').classList.add('show'); ok = false; }
+                return ok;
+            }
+            function valStep2() {
+                clearErrs(); let ok = true;
+                if (!document.getElementById('ftimeBiz').value) { showErr('ftimeBiz','ftimeErr'); ok = false; }
+                if (!document.getElementById('fcredit').value) { showErr('fcredit','fcreditErr'); ok = false; }
+                if (!document.querySelector('input[name="fpastFin"]:checked')) { document.getElementById('fpastErr').classList.add('show'); ok = false; }
+                return ok;
+            }
+
+            function showFStep(n) {
+                document.getElementById('fstep1').classList.remove('active');
+                document.getElementById('fstep2').classList.remove('active');
+                document.getElementById('floader').classList.remove('active');
+                document.getElementById('fresult').classList.remove('active');
+                var p = document.getElementById('funnelProgress');
+                if (n === 1) {
+                    document.getElementById('fstep1').classList.add('active');
+                    document.getElementById('fprog1').className = 'funnel-prog-step active';
+                    document.getElementById('fprog2').className = 'funnel-prog-step';
+                    document.getElementById('fprogLabel').textContent = 'Step 1 of 2';
+                    p.style.display = 'flex';
+                } else if (n === 2) {
+                    document.getElementById('fstep2').classList.add('active');
+                    document.getElementById('fprog1').className = 'funnel-prog-step done';
+                    document.getElementById('fprog2').className = 'funnel-prog-step active';
+                    document.getElementById('fprogLabel').textContent = 'Step 2 of 2';
+                    p.style.display = 'flex';
+                }
+            }
+
+            document.getElementById('fbtnNext').addEventListener('click', function() {
+                if (valStep1()) {
+                    fd.name = document.getElementById('fname').value.trim();
+                    fd.email = document.getElementById('femail').value.trim();
+                    fd.phone = document.getElementById('fphone').value.trim();
+                    fd.budget = document.getElementById('fbudget').value;
+                    var u = document.querySelector('input[name="funitCount"]:checked');
+                    fd.unitCount = u ? u.value : '';
+                    console.log('[YIY] Step 1:', JSON.stringify(fd));
+                    showFStep(2);
+                    document.getElementById('funnelCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+
+            document.getElementById('fbtnBack').addEventListener('click', function() { showFStep(1); });
+
+            document.getElementById('fbtnSubmit').addEventListener('click', function() {
+                if (valStep2()) {
+                    fd.timeBiz = document.getElementById('ftimeBiz').value;
+                    fd.credit = document.getElementById('fcredit').value;
+                    var p = document.querySelector('input[name="fpastFin"]:checked');
+                    fd.pastFin = p ? p.value : '';
+                    console.log('[YIY] Step 2:', JSON.stringify(fd));
+
+                    document.getElementById('funnelProgress').style.display = 'none';
+                    document.getElementById('fstep2').classList.remove('active');
+                    document.getElementById('floader').classList.add('active');
+
+                    var msgs = ['Reviewing your project details...','Matching with available financing paths...','Preparing your readiness profile...'];
+                    var lt = document.getElementById('floaderText');
+                    var i = 0; lt.textContent = msgs[0];
+                    var iv = setInterval(function() {
+                        i++;
+                        if (i < msgs.length) {
+                            lt.style.opacity = '0';
+                            setTimeout(function() { lt.textContent = msgs[i]; lt.style.opacity = '1'; }, 300);
+                        } else {
+                            clearInterval(iv);
+                            setTimeout(function() {
+                                document.getElementById('floader').classList.remove('active');
+                                document.getElementById('fresult').classList.add('active');
+
+                                var bl = {'25k-50k':'$25K–$50K','50k-100k':'$50K–$100K','100k-250k':'$100K–$250K','250k-500k':'$250K–$500K','500k-1m':'$500K–$1M','1m-plus':'$1M+'};
+                                var tl = {'under-2':'Under 2 Years','2-5':'2–5 Years','5-plus':'5+ Years'};
+                                var cl = {'740-plus':'740+','700-740':'700–740','650-700':'650–700','600-650':'600–650','under-600':'Below 600'};
+
+                                document.getElementById('fsummary').innerHTML =
+                                    '<div class="f-summary-row"><span class="f-summary-label">Equipment Budget</span><span class="f-summary-value">'+(bl[fd.budget]||'Pending verification')+'</span></div>'+
+                                    '<div class="f-summary-row"><span class="f-summary-label">Units</span><span class="f-summary-value">'+(fd.unitCount==='single'?'Single Piece':'Multiple Units')+'</span></div>'+
+                                    '<div class="f-summary-row"><span class="f-summary-label">Time in Business</span><span class="f-summary-value">'+(tl[fd.timeBiz]||'Pending verification')+'</span></div>'+
+                                    '<div class="f-summary-row"><span class="f-summary-label">Credit Range</span><span class="f-summary-value">'+(cl[fd.credit]||'Pending verification')+'</span></div>';
+
+                                var dsBase = 'https://app.docusign.com/YOUR_TEMPLATE_PLACEHOLDER';
+                                document.getElementById('fbtnDocusign').href = dsBase + '?name=' + encodeURIComponent(fd.name) + '&email=' + encodeURIComponent(fd.email);
+                            }, 600);
+                        }
+                    }, 1400);
+                }
+            });
+
+            // Clear errors on input
+            document.querySelectorAll('.f-input').forEach(function(inp) {
+                inp.addEventListener('input', function() { this.classList.remove('error'); var e = this.closest('.f-field').querySelector('.f-error'); if (e) e.classList.remove('show'); });
+                inp.addEventListener('change', function() { this.classList.remove('error'); var e = this.closest('.f-field').querySelector('.f-error'); if (e) e.classList.remove('show'); });
+            });
+            document.querySelectorAll('.f-toggle-option input').forEach(function(inp) {
+                inp.addEventListener('change', function() { var e = this.closest('.f-field').querySelector('.f-error'); if (e) e.classList.remove('show'); });
+            });
+        })();
+    </script>
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav').classList.toggle('nav-open');
+        });
+    </script>
+</body>
+</html>

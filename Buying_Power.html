@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yellow Iron Yard | Check Your Equipment Buying Power</title>
+    <meta name="description" content="See what equipment financing paths are available for your business. 2-minute check, no credit impact.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FDB913;
+            --yellow-light: #FFD04D;
+            --yellow-dark: #D99A00;
+            --charcoal: #2C3E50;
+            --charcoal-deep: #1a252f;
+            --charcoal-light: #34495e;
+            --steel: #6C7A89;
+            --text-dark: #1a1a2e;
+            --text-med: #4a5568;
+            --text-light: #718096;
+            --bg: #f7f8fa;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --green: #27ae60;
+            --green-light: #e8f8ef;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body {
+            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--charcoal-deep);
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+        }
+
+        /* === BACKGROUND === */
+        .page-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(160deg, #1a252f 0%, #2C3E50 50%, #1a252f 100%);
+            z-index: 0;
+        }
+        .page-bg::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -15%;
+            width: 60%; height: 160%;
+            background: var(--yellow);
+            transform: skewX(-15deg);
+            opacity: 0.035;
+        }
+        .page-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(26,37,47,0.6), transparent);
+        }
+        .grid-texture {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(253,185,19,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(253,185,19,0.03) 1px, transparent 1px);
+            background-size: 48px 48px;
+            z-index: 0;
+        }
+
+        /* === LAYOUT === */
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.25rem 3rem;
+        }
+
+        /* === HEADER === */
+        .site-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeDown 0.6s ease-out;
+        }
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            letter-spacing: 0.08em;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .logo-text .yellow { color: var(--yellow); }
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: var(--yellow);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 20px; height: 20px; color: var(--charcoal-deep); }
+        .header-tagline {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* === CARD === */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow:
+                0 4px 6px rgba(0,0,0,0.1),
+                0 20px 40px rgba(0,0,0,0.25),
+                0 0 0 1px rgba(255,255,255,0.05);
+            overflow: hidden;
+            animation: fadeUp 0.5s ease-out 0.15s both;
+        }
+        .card-accent {
+            height: 4px;
+            background: linear-gradient(90deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+        }
+        .card-body {
+            padding: 2rem 1.75rem 2.25rem;
+        }
+
+        /* === PROGRESS === */
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .progress-step {
+            flex: 1;
+            height: 4px;
+            background: var(--border);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .progress-step.active,
+        .progress-step.done {
+            background: var(--yellow);
+        }
+        .progress-step.active::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        /* === FORM STEP HEADERS === */
+        .step-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
+            color: var(--charcoal);
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.35rem;
+        }
+        .step-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-med);
+            margin-bottom: 1.75rem;
+            line-height: 1.5;
+        }
+
+        /* === FORM FIELDS === */
+        .field {
+            margin-bottom: 1.25rem;
+        }
+        .field:last-child {
+            margin-bottom: 0;
+        }
+        .field-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .field-input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+            min-height: 54px;
+        }
+        .field-input:focus {
+            outline: none;
+            border-color: var(--yellow);
+            box-shadow: 0 0 0 3px rgba(253,185,19,0.15);
+        }
+        .field-input::placeholder {
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* Select styling */
+        .field-select-wrap {
+            position: relative;
+        }
+        .field-select-wrap::after {
+            content: '';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0; height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid var(--steel);
+            pointer-events: none;
+        }
+        .field-select-wrap select {
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* Toggle */
+        .toggle-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .toggle-option {
+            position: relative;
+        }
+        .toggle-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0; height: 0;
+        }
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1rem;
+            min-height: 54px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-med);
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .toggle-btn:active {
+            transform: scale(0.98);
+        }
+        .toggle-option input:checked + .toggle-btn {
+            border-color: var(--yellow);
+            background: rgba(253,185,19,0.08);
+            color: var(--charcoal);
+            box-shadow: 0 0 0 3px rgba(253,185,19,0.12);
+        }
+        .toggle-option input:checked + .toggle-btn .toggle-check {
+            opacity: 1;
+        }
+        .toggle-check {
+            width: 18px; height: 18px;
+            background: var(--yellow);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .toggle-check svg { width: 11px; height: 11px; color: var(--charcoal-deep); }
+
+        /* Micro trust */
+        .micro-trust {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .micro-trust svg {
+            width: 13px; height: 13px;
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        /* === BUTTONS === */
+        .btn-row {
+            margin-top: 2rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 1.75rem;
+            min-height: 54px;
+            border-radius: 8px;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        .btn-primary {
+            flex: 1;
+            background: var(--yellow);
+            color: var(--charcoal-deep);
+            box-shadow: 0 2px 8px rgba(253,185,19,0.3);
+        }
+        .btn-primary:hover {
+            background: var(--yellow-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(253,185,19,0.4);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-back {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--border);
+            padding: 1rem 1.25rem;
+        }
+        .btn-back:hover {
+            border-color: var(--steel);
+            color: var(--text-med);
+        }
+        .btn-back svg { width: 16px; height: 16px; }
+
+        /* === FORM STATES === */
+        .form-step { display: none; }
+        .form-step.active { display: block; animation: fadeIn 0.35s ease-out; }
+
+        /* === LOADER STATE === */
+        .loader-state {
+            display: none;
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+        .loader-state.active { display: block; animation: fadeIn 0.4s ease-out; }
+
+        .loader-spinner {
+            width: 56px; height: 56px;
+            border: 4px solid var(--border);
+            border-top-color: var(--yellow);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1.75rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loader-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            min-height: 1.6em;
+            transition: opacity 0.3s;
+        }
+        .loader-sub {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.75rem;
+        }
+
+        /* === RESULT STATE === */
+        .result-state {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .result-state.active { display: block; }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--green-light);
+            color: var(--green);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 1.25rem;
+        }
+        .result-badge svg { width: 14px; height: 14px; }
+
+        .result-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.65rem;
+            color: var(--charcoal);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+        .result-body {
+            font-size: 0.95rem;
+            color: var(--text-med);
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+
+        .result-summary {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.75rem;
+        }
+        .result-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .result-summary-row:last-child { border-bottom: none; }
+        .result-summary-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .result-summary-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .btn-docusign {
+            width: 100%;
+            background: var(--yellow);
+            color: var(--charcoal-deep);
+            box-shadow: 0 2px 8px rgba(253,185,19,0.3);
+            font-size: 1rem;
+            padding: 1.1rem 1.75rem;
+            min-height: 56px;
+        }
+        .btn-docusign:hover {
+            background: var(--yellow-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(253,185,19,0.4);
+        }
+        .btn-docusign svg { width: 18px; height: 18px; }
+
+        .exit-safety {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        .exit-safety svg {
+            width: 14px; height: 14px;
+            color: var(--steel);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* === FOOTER === */
+        .page-footer {
+            margin-top: 2rem;
+            text-align: center;
+            animation: fadeDown 0.6s ease-out 0.3s both;
+        }
+        .footer-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            font-weight: 600;
+        }
+        .footer-trust svg { width: 13px; height: 13px; color: rgba(253,185,19,0.5); }
+        .footer-legal {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.25);
+            margin-top: 0.75rem;
+            max-width: 420px;
+            line-height: 1.5;
+        }
+
+        /* === VALIDATION === */
+        .field-input.error {
+            border-color: #e74c3c;
+        }
+        .field-error {
+            font-size: 0.75rem;
+            color: #e74c3c;
+            font-weight: 600;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        .field-error.show { display: block; }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 480px) {
+            .page-wrapper { padding: 1.25rem 1rem 2rem; }
+            .card-body { padding: 1.5rem 1.25rem 1.75rem; }
+            .step-title { font-size: 1.5rem; }
+            .logo-text { font-size: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .page-wrapper { padding: 3rem 2rem 4rem; }
+            .site-header { margin-bottom: 2.5rem; }
+            .step-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-bg"></div>
+<div class="grid-texture"></div>
+
+<div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="logo-text">
+            <div class="logo-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+            </div>
+            <span><span class="yellow">Yellow Iron</span> Yard</span>
+        </div>
+        <div class="header-tagline">Check Your Equipment Buying Power</div>
+    </header>
+
+    <!-- MAIN CARD -->
+    <div class="card" id="mainCard">
+        <div class="card-accent"></div>
+        <div class="card-body">
+
+            <!-- PROGRESS BAR -->
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-step active" id="prog1"></div>
+                <div class="progress-step" id="prog2"></div>
+                <span class="progress-label" id="progLabel">Step 1 of 2</span>
+            </div>
+
+            <!-- STEP 1: PROJECT SCOPE -->
+            <div class="form-step active" id="step1">
+                <h2 class="step-title">Your Equipment Project</h2>
+                <p class="step-subtitle">Tell us what you're looking at. Takes about 60 seconds.</p>
+
+                <div class="field">
+                    <label class="field-label" for="name">Full Name</label>
+                    <input class="field-input" id="name" type="text" placeholder="John Smith" autocomplete="name" required>
+                    <div class="field-error" id="nameError">Please enter your name</div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="email">Email</label>
+                    <input class="field-input" id="email" type="email" placeholder="john@company.com" autocomplete="email" inputmode="email" required>
+                    <div class="field-error" id="emailError">Please enter a valid email</div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="phone">Phone</label>
+                    <input class="field-input" id="phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" inputmode="tel" required>
+                    <div class="field-error" id="phoneError">Please enter a valid phone number</div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="budget">Estimated Equipment Budget</label>
+                    <div class="field-select-wrap">
+                        <select class="field-input" id="budget" required>
+                            <option value="" disabled selected>Select a range</option>
+                            <option value="25k-50k">$25,000 – $50,000</option>
+                            <option value="50k-100k">$50,000 – $100,000</option>
+                            <option value="100k-250k">$100,000 – $250,000</option>
+                            <option value="250k-500k">$250,000 – $500,000</option>
+                            <option value="500k-1m">$500,000 – $1,000,000</option>
+                            <option value="1m-plus">$1,000,000+</option>
+                        </select>
+                    </div>
+                    <div class="field-error" id="budgetError">Please select a budget range</div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">How Many Pieces?</label>
+                    <div class="toggle-group">
+                        <label class="toggle-option">
+                            <input type="radio" name="unitCount" value="single" required>
+                            <div class="toggle-btn">
+                                <span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></span>
+                                Single Piece
+                            </div>
+                        </label>
+                        <label class="toggle-option">
+                            <input type="radio" name="unitCount" value="multiple" required>
+                            <div class="toggle-btn">
+                                <span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></span>
+                                Multiple Units
+                            </div>
+                        </label>
+                    </div>
+                    <div class="field-error" id="unitError">Please select one</div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn btn-primary" id="btnNext" type="button">
+                        Next
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: READINESS PROFILE -->
+            <div class="form-step" id="step2">
+                <h2 class="step-title">Readiness Profile</h2>
+                <p class="step-subtitle">A few quick details to match you with the right financing paths.</p>
+
+                <div class="field">
+                    <label class="field-label" for="timeInBiz">Time in Business</label>
+                    <div class="field-select-wrap">
+                        <select class="field-input" id="timeInBiz" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="under-2">Under 2 Years</option>
+                            <option value="2-5">2 – 5 Years</option>
+                            <option value="5-plus">5+ Years</option>
+                        </select>
+                    </div>
+                    <div class="field-error" id="timeError">Please select one</div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="credit">Credit Range</label>
+                    <div class="field-select-wrap">
+                        <select class="field-input" id="credit" required>
+                            <option value="" disabled selected>Select your range</option>
+                            <option value="740-plus">740+</option>
+                            <option value="700-740">700 – 740</option>
+                            <option value="650-700">650 – 700</option>
+                            <option value="600-650">600 – 650</option>
+                            <option value="under-600">Below 600</option>
+                        </select>
+                    </div>
+                    <div class="micro-trust">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                        Estimate only — does not affect your credit.
+                    </div>
+                    <div class="field-error" id="creditError">Please select one</div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Past Equipment Financing?</label>
+                    <div class="toggle-group">
+                        <label class="toggle-option">
+                            <input type="radio" name="pastFinancing" value="yes" required>
+                            <div class="toggle-btn">
+                                <span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></span>
+                                Yes
+                            </div>
+                        </label>
+                        <label class="toggle-option">
+                            <input type="radio" name="pastFinancing" value="no" required>
+                            <div class="toggle-btn">
+                                <span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></span>
+                                No
+                            </div>
+                        </label>
+                    </div>
+                    <div class="field-error" id="pastError">Please select one</div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn btn-back" id="btnBack" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" /></svg>
+                    </button>
+                    <button class="btn btn-primary" id="btnSubmit" type="button">
+                        Check Buying Power
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    </button>
+                </div>
+                <p style="font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: center; margin-top: 0.75rem; line-height: 1.5; max-width: 420px; margin-left: auto; margin-right: auto;">By clicking "Check Buying Power," you agree to be contacted by phone, email, and/or text regarding your request. You can opt out at any time.</p>
+            </div>
+
+            <!-- LOADER STATE -->
+            <div class="loader-state" id="loaderState">
+                <div class="loader-spinner"></div>
+                <div class="loader-text" id="loaderText">Reviewing your project details...</div>
+                <div class="loader-sub">This takes just a moment</div>
+            </div>
+
+            <!-- RESULT STATE -->
+            <div class="result-state" id="resultState">
+                <div class="result-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    Financing Paths Identified
+                </div>
+                <h2 class="result-title">We've Matched Your Project With Available Options</h2>
+                <p class="result-body">Based on your equipment budget and readiness profile, we've identified potential financing paths through our partner network.</p>
+
+                <div class="result-summary" id="resultSummary">
+                    <!-- Populated by JS -->
+                </div>
+
+                <a class="btn btn-docusign" id="btnDocusign" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Fast-Track Financing Review
+                </a>
+
+                <div class="exit-safety">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    Review your details via DocuSign before anything is submitted to our partner network.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        <div class="footer-trust">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            No credit impact &bull; Soft pull only &bull; Your info stays private
+        </div>
+        <div class="footer-legal">
+            Yellow Iron Yard LLC &bull; Providence, RI<br>
+            Yellow Iron Yard is an equipment finance marketplace and broker. We connect businesses with independent financing providers. Financing is subject to credit approval and program terms.
+        </div>
+    </footer>
+
+</div>
+
+<script>
+(function() {
+    'use strict';
+
+    // ── DATA STORE ──
+    const formData = {
+        name: '', email: '', phone: '',
+        budget: '', unitCount: '',
+        timeInBusiness: '', creditHealth: '',
+        pastFinancing: ''
+    };
+
+    // ── DOM REFS ──
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const loaderState = document.getElementById('loaderState');
+    const resultState = document.getElementById('resultState');
+    const progressBar = document.getElementById('progressBar');
+    const prog1 = document.getElementById('prog1');
+    const prog2 = document.getElementById('prog2');
+    const progLabel = document.getElementById('progLabel');
+
+    // Inputs
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const budgetSelect = document.getElementById('budget');
+    const timeSelect = document.getElementById('timeInBiz');
+    const creditSelect = document.getElementById('credit');
+
+    // ── PHONE FORMATTING ──
+    phoneInput.addEventListener('input', function() {
+        let v = this.value.replace(/\D/g, '');
+        if (v.length > 10) v = v.slice(0, 10);
+        if (v.length >= 7) {
+            this.value = '(' + v.slice(0,3) + ') ' + v.slice(3,6) + '-' + v.slice(6);
+        } else if (v.length >= 4) {
+            this.value = '(' + v.slice(0,3) + ') ' + v.slice(3);
+        } else if (v.length > 0) {
+            this.value = '(' + v;
+        }
+    });
+
+    // ── VALIDATION ──
+    function clearErrors() {
+        document.querySelectorAll('.field-input.error').forEach(el => el.classList.remove('error'));
+        document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
+    }
+
+    function showError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        if (input) input.classList.add('error');
+        if (error) error.classList.add('show');
+    }
+
+    function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validatePhone(phone) {
+        return phone.replace(/\D/g, '').length >= 10;
+    }
+
+    function validateStep1() {
+        clearErrors();
+        let valid = true;
+
+        if (!nameInput.value.trim()) { showError('name', 'nameError'); valid = false; }
+        if (!validateEmail(emailInput.value)) { showError('email', 'emailError'); valid = false; }
+        if (!validatePhone(phoneInput.value)) { showError('phone', 'phoneError'); valid = false; }
+        if (!budgetSelect.value) { showError('budget', 'budgetError'); valid = false; }
+
+        const unitSelected = document.querySelector('input[name="unitCount"]:checked');
+        if (!unitSelected) {
+            document.getElementById('unitError').classList.add('show');
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    function validateStep2() {
+        clearErrors();
+        let valid = true;
+
+        if (!timeSelect.value) { showError('timeInBiz', 'timeError'); valid = false; }
+        if (!creditSelect.value) { showError('credit', 'creditError'); valid = false; }
+
+        const pastSelected = document.querySelector('input[name="pastFinancing"]:checked');
+        if (!pastSelected) {
+            document.getElementById('pastError').classList.add('show');
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    // ── PERSIST (Supabase-ready stub) ──
+    function persistData(step) {
+        if (step >= 1) {
+            formData.name = nameInput.value.trim();
+            formData.email = emailInput.value.trim();
+            formData.phone = phoneInput.value.trim();
+            formData.budget = budgetSelect.value;
+            const unit = document.querySelector('input[name="unitCount"]:checked');
+            formData.unitCount = unit ? unit.value : '';
+        }
+        if (step >= 2) {
+            formData.timeInBusiness = timeSelect.value;
+            formData.creditHealth = creditSelect.value;
+            const past = document.querySelector('input[name="pastFinancing"]:checked');
+            formData.pastFinancing = past ? past.value : '';
+        }
+
+        // ── SUPABASE INTEGRATION POINT ──
+        // Replace this console.log with actual Supabase insert/upsert
+        console.log('[YellowIronYard] Persisting step ' + step + ':', JSON.stringify(formData));
+
+        // Example Supabase call (uncomment when ready):
+        // const { data, error } = await supabase
+        //     .from('leads')
+        //     .upsert({ email: formData.email, ...formData }, { onConflict: 'email' });
+    }
+
+    // ── STEP NAVIGATION ──
+    function showStep(num) {
+        step1.classList.remove('active');
+        step2.classList.remove('active');
+        loaderState.classList.remove('active');
+        resultState.classList.remove('active');
+
+        if (num === 1) {
+            step1.classList.add('active');
+            prog1.classList.add('active');
+            prog1.classList.remove('done');
+            prog2.classList.remove('active', 'done');
+            progLabel.textContent = 'Step 1 of 2';
+            progressBar.style.display = 'flex';
+        } else if (num === 2) {
+            step2.classList.add('active');
+            prog1.classList.remove('active');
+            prog1.classList.add('done');
+            prog2.classList.add('active');
+            progLabel.textContent = 'Step 2 of 2';
+            progressBar.style.display = 'flex';
+        }
+    }
+
+    // ── LOADER SEQUENCE ──
+    function runLoader() {
+        progressBar.style.display = 'none';
+        step2.classList.remove('active');
+        loaderState.classList.add('active');
+
+        const messages = [
+            'Reviewing your project details...',
+            'Matching with available financing paths...',
+            'Preparing your readiness profile...'
+        ];
+        const loaderText = document.getElementById('loaderText');
+        let i = 0;
+        loaderText.textContent = messages[0];
+
+        const interval = setInterval(() => {
+            i++;
+            if (i < messages.length) {
+                loaderText.style.opacity = '0';
+                setTimeout(() => {
+                    loaderText.textContent = messages[i];
+                    loaderText.style.opacity = '1';
+                }, 300);
+            } else {
+                clearInterval(interval);
+                setTimeout(showResult, 600);
+            }
+        }, 1400);
+    }
+
+    // ── RESULT STATE ──
+    function showResult() {
+        loaderState.classList.remove('active');
+        resultState.classList.add('active');
+        progressBar.style.display = 'none';
+
+        // Budget label map
+        const budgetLabels = {
+            '25k-50k': '$25K – $50K',
+            '50k-100k': '$50K – $100K',
+            '100k-250k': '$100K – $250K',
+            '250k-500k': '$250K – $500K',
+            '500k-1m': '$500K – $1M',
+            '1m-plus': '$1M+'
+        };
+
+        const timeLabels = {
+            'under-2': 'Under 2 Years',
+            '2-5': '2 – 5 Years',
+            '5-plus': '5+ Years'
+        };
+
+        const creditLabels = {
+            '740-plus': '740+',
+            '700-740': '700 – 740',
+            '650-700': '650 – 700',
+            '600-650': '600 – 650',
+            'under-600': 'Below 600'
+        };
+
+        const summary = document.getElementById('resultSummary');
+        summary.innerHTML = `
+            <div class="result-summary-row">
+                <span class="result-summary-label">Equipment Budget</span>
+                <span class="result-summary-value">${budgetLabels[formData.budget] || 'Pending verification'}</span>
+            </div>
+            <div class="result-summary-row">
+                <span class="result-summary-label">Units</span>
+                <span class="result-summary-value">${formData.unitCount === 'single' ? 'Single Piece' : 'Multiple Units'}</span>
+            </div>
+            <div class="result-summary-row">
+                <span class="result-summary-label">Time in Business</span>
+                <span class="result-summary-value">${timeLabels[formData.timeInBusiness] || 'Pending verification'}</span>
+            </div>
+            <div class="result-summary-row">
+                <span class="result-summary-label">Credit Health</span>
+                <span class="result-summary-value">${creditLabels[formData.creditHealth] || 'Pending verification'}</span>
+            </div>
+        `;
+
+        // DocuSign URL with prefilled params
+        const docuSignBase = 'https://app.docusign.com/YOUR_TEMPLATE_PLACEHOLDER';
+        const params = new URLSearchParams({
+            name: formData.name,
+            email: formData.email
+        });
+        document.getElementById('btnDocusign').href = docuSignBase + '?' + params.toString();
+    }
+
+    // ── EVENT LISTENERS ──
+    document.getElementById('btnNext').addEventListener('click', function() {
+        if (validateStep1()) {
+            persistData(1);
+            showStep(2);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    document.getElementById('btnBack').addEventListener('click', function() {
+        showStep(1);
+    });
+
+    document.getElementById('btnSubmit').addEventListener('click', function() {
+        if (validateStep2()) {
+            persistData(2);
+            runLoader();
+        }
+    });
+
+    // Clear field errors on interaction
+    document.querySelectorAll('.field-input').forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('error');
+            const errorEl = this.parentElement.querySelector('.field-error') ||
+                           this.closest('.field').querySelector('.field-error');
+            if (errorEl) errorEl.classList.remove('show');
+        });
+        input.addEventListener('change', function() {
+            this.classList.remove('error');
+            const errorEl = this.closest('.field').querySelector('.field-error');
+            if (errorEl) errorEl.classList.remove('show');
+        });
+    });
+
+    // Toggle error clearing
+    document.querySelectorAll('.toggle-option input').forEach(input => {
+        input.addEventListener('change', function() {
+            const errorEl = this.closest('.field').querySelector('.field-error');
+            if (errorEl) errorEl.classList.remove('show');
+        });
+    });
+
+})();
+</script>
+
+</body>
+</html>
