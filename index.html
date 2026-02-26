@@ -313,52 +313,50 @@
         }
 
         /* ╔══════════════════════════════════════════════════════════╗
-           ║  SECTION 1: #how-it-works — DARK MACHINERY DASHBOARD    ║
+           ║  SECTION 1: #how-it-works — PARCHMENT + DIAGONAL SPLIT  ║
            ╚══════════════════════════════════════════════════════════╝ */
 
         .how-it-works {
-            background:
-                linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-                url('industries_background_v2.mp4') center / cover no-repeat;
-            /* Fallback charcoal while video isn't available as img */
-            background-color: var(--iron-charcoal-deep);
+            background: #fdfaf4;
             background-image:
-                linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-                linear-gradient(135deg, #1a252f 0%, #2d3f50 50%, #1e2d3d 100%);
-            padding: 7rem 2rem;
+                radial-gradient(ellipse at 80% 10%, rgba(253,185,19,0.13) 0%, transparent 55%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+            padding: 6rem 2rem 10rem;
             position: relative;
             overflow: hidden;
+            border-top: 5px solid var(--iron-charcoal-deep);
         }
-        /* Subtle grain texture overlay */
-        .how-it-works::before {
+        /* Diagonal bottom edge into charcoal */
+        .how-it-works::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(253,185,19,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(253,185,19,0.04) 1px, transparent 1px);
-            background-size: 48px 48px;
+            bottom: -1px; left: 0; right: 0;
+            height: 120px;
+            background: var(--iron-charcoal-deep);
+            clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+            z-index: 0;
             pointer-events: none;
         }
+        .how-it-works::before { display: none; }
 
         .hiw-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
-            align-items: center;
+            align-items: start;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         /* ── LEFT: MARKET ACCESS ── */
         .hiw-label {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.25em;
-            color: var(--iron-yellow);
-            opacity: 0.75;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            color: var(--iron-yellow-dark);
+            opacity: 0.9;
             display: block;
             margin-bottom: 0.65rem;
             text-transform: uppercase;
@@ -367,13 +365,13 @@
             font-family: 'Bebas Neue', sans-serif;
             font-size: 4rem;
             line-height: 0.9;
-            color: white;
+            color: var(--iron-charcoal-deep);
             margin-bottom: 1.1rem;
             letter-spacing: -0.01em;
         }
         .hiw-body {
             font-size: 1.05rem;
-            color: rgba(255,255,255,0.7);
+            color: var(--text-medium);
             line-height: 1.75;
             margin-bottom: 2rem;
             max-width: 500px;
@@ -389,7 +387,7 @@
             align-items: baseline;
             gap: 0.45rem;
             font-size: 0.82rem;
-            color: rgba(255,255,255,0.7);
+            color: var(--text-medium);
             padding: 0.4rem 0.5rem;
             border-radius: 4px;
             border-left: 2px solid transparent;
@@ -398,27 +396,39 @@
         }
         .hiw-item:hover {
             border-left-color: var(--iron-yellow);
-            background: rgba(253,185,19,0.07);
-            color: white;
+            background: rgba(253,185,19,0.08);
+            color: var(--text-dark);
         }
         .hiw-chk {
-            color: var(--iron-yellow);
+            color: var(--iron-yellow-dark);
             font-weight: 900;
             font-size: 0.8rem;
             flex-shrink: 0;
         }
-        .hiw-item strong { color: white; font-weight: 700; }
-        .hiw-footnote { font-size: 0.67rem; color: rgba(255,255,255,0.35); font-style: italic; }
+        .hiw-item strong { color: var(--text-dark); font-weight: 700; }
+        .hiw-footnote { font-size: 0.67rem; color: var(--text-light); font-style: italic; margin-top: 0.5rem; }
 
-        /* ── RIGHT: WORKFLOW STEPS ── */
-        .hiw-right { display: flex; flex-direction: column; gap: 0; }
-        .hiw-steps { display: flex; flex-direction: column; gap: 0; margin: 1.25rem 0; }
+        /* ── RIGHT: WORKFLOW STEPS — floating white card ── */
+        .hiw-right {
+            background: white;
+            border-radius: 16px;
+            border-top: 4px solid var(--iron-yellow);
+            padding: 2.25rem;
+            box-shadow:
+                0 32px 64px rgba(0,0,0,0.13),
+                0 8px 24px rgba(0,0,0,0.07),
+                0 2px 6px rgba(0,0,0,0.04);
+            position: relative;
+            z-index: 10;
+            margin-bottom: -80px;
+        }
+        .hiw-steps { display: flex; flex-direction: column; gap: 0; margin: 0; }
         .hiw-step {
             display: flex;
             gap: 1.25rem;
             align-items: flex-start;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 1.35rem 0;
+            border-bottom: 1px solid var(--border);
             position: relative;
         }
         .hiw-step:last-child { border-bottom: none; }
@@ -427,29 +437,28 @@
             font-size: 2.5rem;
             line-height: 1;
             color: var(--iron-yellow);
-            opacity: 1;
             min-width: 2.75rem;
             flex-shrink: 0;
         }
         .hiw-step-content h4 {
             font-size: 1.05rem;
-            color: white;
+            color: var(--iron-charcoal);
             font-weight: 800;
             margin-bottom: 0.35rem;
         }
         .hiw-step-content p {
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.6);
+            color: var(--text-medium);
             line-height: 1.65;
         }
         .hiw-reassurance {
             font-size: 0.78rem;
-            color: rgba(255,255,255,0.45);
-            margin-top: 1rem;
+            color: var(--text-light);
+            margin-top: 1.25rem;
             padding: 0.75rem 1rem;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--border);
             border-radius: 6px;
-            background: rgba(255,255,255,0.03);
+            background: #f7f8fa;
         }
 
         /* ╔══════════════════════════════════════════════════════════╗
@@ -611,6 +620,7 @@
             .hiw-layout { grid-template-columns: 1fr; gap: 3rem; }
             .hiw-title  { font-size: 3rem; }
             .hiw-body   { max-width: 100%; }
+            .hiw-right  { margin-bottom: 0; }
             .footer-slim-inner { flex-direction: column; align-items: flex-start; }
         }
         @media (max-width: 600px) {
@@ -625,24 +635,39 @@
             position: relative;
             background:
                 linear-gradient(
-                    rgba(34,44,54,0.68),
-                    rgba(34,44,54,0.74)
+                    90deg,
+                    rgba(210,218,224,0.45) 0%,
+                    rgba(180,190,198,0.52) 35%,
+                    rgba(100,115,125,0.68) 65%,
+                    rgba(60,75,85,0.78) 100%
                 ),
                 url("textured_iron.jpg") center / cover no-repeat;
-            border-top: 1px solid var(--border);
+            border-top: 5px solid var(--iron-charcoal-deep);
         }
         .dealer-partners::before {
             content: '';
             position: absolute;
             inset: 0;
-            backdrop-filter: saturate(0.6) contrast(0.85) brightness(0.9);
+            backdrop-filter: saturate(0.55) contrast(0.9) brightness(1.0);
             pointer-events: none;
+            z-index: 0;
+        }
+        /* Yellow accent bar — left edge */
+        .dealer-partners::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--iron-yellow) 0%, rgba(253,185,19,0.2) 100%);
+            pointer-events: none;
+            z-index: 1;
         }
         .dealer-partners .section-container { padding: 0 2rem; position: relative; z-index: 2; }
         .dealer-partners .section-header { margin-bottom: 3rem; padding-top: 4rem; }
-        .dealer-partners .section-header h2 { color: white; }
-        .dealer-partners .section-header p { color: rgba(255,255,255,0.75); }
-        .dealer-partners .section-label { background: rgba(253,185,19,0.2); color: var(--iron-yellow); }
+        .dealer-partners .section-header h2 { color: var(--iron-charcoal-deep); font-size: 3.25rem; font-weight: 900; }
+        .dealer-partners .section-header p { color: rgba(26,37,47,0.8); font-size: 1.15rem; font-weight: 700; }
+        .dealer-partners .section-label { background: rgba(26,37,47,0.12); color: var(--iron-charcoal-deep); border: 1px solid rgba(26,37,47,0.2); }
 
         /* ── Dealer Banner ── */
         .dealer-banner {
@@ -679,8 +704,8 @@
         }
         .dealer-banner h2 {
             font-family: 'Work Sans', sans-serif;
-            font-weight: 800;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            font-size: clamp(2.25rem, 4.5vw, 3.5rem);
             line-height: 1.1;
             margin-bottom: 16px;
         }
@@ -699,17 +724,22 @@
         }
         .dp-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 1fr;
             gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
             align-items: start;
         }
+        .dp-left {
+            max-width: 540px;
+            margin-left: 0;
+            padding-left: 0;
+        }
 
         /* ── LEFT: Accordion ── */
         /* ── Dealer Platform Label + Photo ── */
         .dealer-platform-label {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: 800;
             letter-spacing: 0.12em;
             text-transform: uppercase;
@@ -722,8 +752,8 @@
             border-radius: 4px;
         }
         .dp-left-title {
-            font-size: 1.15rem;
-            font-weight: 800;
+            font-size: 1.6rem;
+            font-weight: 900;
             color: var(--iron-charcoal);
             margin-bottom: 1rem;
             text-transform: uppercase;
@@ -774,13 +804,13 @@
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            padding: 1.15rem 1.5rem;
+            padding: 1.35rem 1.5rem;
             background: none;
             border: none;
             cursor: pointer;
             font-family: 'Work Sans', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--iron-charcoal);
             text-align: left;
             transition: background 0.2s ease, color 0.2s ease;
@@ -806,8 +836,9 @@
             max-height: 300px;
         }
         .dp-accordion-body-inner {
-            padding: 0 1.5rem 1.25rem;
-            font-size: 0.93rem;
+            padding: 0 1.5rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
             color: var(--text-dark);
             line-height: 1.7;
         }
@@ -1168,7 +1199,7 @@
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- HOW IT WORKS / FINANCING PROGRAMS -->
     <section class="how-it-works" id="how-it-works">
         <div class="hiw-layout">
 
@@ -1192,7 +1223,7 @@
                 <p class="hiw-footnote">*Terms Vary by Lender and Qualifications.</p>
             </div><!-- /hiw-left -->
 
-            <!-- RIGHT: THE WORKFLOW -->
+            <!-- RIGHT: THE WORKFLOW — floating white card -->
             <div class="hiw-right">
                 <span class="hiw-label">THE WORKFLOW</span>
                 <div class="hiw-steps">
@@ -1223,6 +1254,8 @@
 
         </div><!-- /hiw-layout -->
     </section>
+    <!-- Charcoal bottom band — card overlaps into this -->
+    <div style="background: var(--iron-charcoal-deep); height: 80px; margin-top: 0;"></div>
 
     <!-- BUYING POWER CHECK (EMBEDDED FUNNEL) -->
     <section class="apply-cta" id="check">
@@ -1392,6 +1425,7 @@
 
     <!-- DEALER PARTNERS -->
     <section class="dealer-partners" id="dealer-partners">
+        <div class="dp-texture-grid"></div>
 
         <!-- DEALER BANNER -->
         <div class="dealer-banner">
@@ -1408,7 +1442,7 @@
                 <span class="section-label">For Dealers</span>
                 <h2>Dealer Partners</h2>
                 <p>Help buyers arrive dealer-ready — and move more units with fewer delays.</p>
-                <p style="font-size:0.8rem;color:rgba(255,255,255,0.55);font-weight:600;margin-top:0.75rem;letter-spacing:0.02em;">Access to 50+ lending partners &bull; A–C credit programs &bull; Up to 84-month terms on used equipment*</p>
+                <p style="font-size:0.95rem;color:rgba(26,37,47,0.85);font-weight:700;margin-top:0.75rem;letter-spacing:0.02em;">Access to 50+ lending partners &bull; A–C credit programs &bull; Up to $350K Application Only*</p>
             </div>
 
             <div class="dp-layout">
@@ -1508,6 +1542,11 @@
                             <div class="dp-field">
                                 <label class="dp-label" for="dpCompany">Dealership / Company Name</label>
                                 <input class="dp-input" id="dpCompany" type="text" placeholder="Smith Equipment Sales">
+                            </div>
+
+                            <div class="dp-field">
+                                <label class="dp-label" for="dpWebsite">Company Website</label>
+                                <input class="dp-input" id="dpWebsite" type="url" placeholder="www.smithequipment.com" autocomplete="url" inputmode="url">
                             </div>
 
                             <div class="dp-form-row">
@@ -1820,6 +1859,7 @@
                     firstName: document.getElementById('dpFirstName').value.trim(),
                     lastName: document.getElementById('dpLastName').value.trim(),
                     company: document.getElementById('dpCompany').value.trim(),
+                    website: document.getElementById('dpWebsite').value.trim(),
                     phone: document.getElementById('dpPhone').value.trim(),
                     email: email,
                     equipment: document.getElementById('dpEquipment').value,
