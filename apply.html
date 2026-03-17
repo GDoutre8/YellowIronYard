@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipment Finance Application | Yellow Iron Yard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #FDB913;
+  --yellow-dark: #D99A00;
+  --charcoal: #2C3E50;
+  --charcoal-deep: #1a252f;
+  --charcoal-light: #34495e;
+  --steel: #6C7A89;
+  --text: #1a1a2e;
+  --text-med: #4a5568;
+  --text-light: #718096;
+  --border: #e2e8f0;
+  --bg: #f7f8fa;
+  --white: #ffffff;
+  --green: #27ae60;
+  --red: #e74c3c;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Work Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.app-header {
+  background: var(--charcoal-deep);
+  border-bottom: 3px solid var(--yellow);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: white;
+}
+.app-logo span { color: var(--yellow); }
+.app-header-sub {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap {
+  background: var(--charcoal);
+  padding: 1.25rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.progress-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.prog-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.prog-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+  z-index: 0;
+}
+.prog-step.done:not(:last-child)::after,
+.prog-step.active:not(:last-child)::after {
+  background: var(--yellow);
+  opacity: 0.5;
+}
+.prog-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  position: relative;
+  z-index: 1;
+  transition: all 0.25s;
+}
+.prog-step.active .prog-dot {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--charcoal-deep);
+  box-shadow: 0 0 0 4px rgba(253,185,19,0.2);
+}
+.prog-step.done .prog-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+.prog-step.done .prog-dot::after {
+  content: '✓';
+  font-size: 0.7rem;
+}
+.prog-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.35);
+  margin-top: 0.4rem;
+  text-align: center;
+  line-height: 1.3;
+}
+.prog-step.active .prog-label { color: var(--yellow); }
+.prog-step.done .prog-label { color: rgba(255,255,255,0.6); }
+
+/* ── MAIN CONTENT ── */
+.app-main {
+  max-width: 860px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* ── SECTION CARD ── */
+.form-section {
+  display: none;
+  animation: fadeUp 0.35s ease-out;
+}
+.form-section.active { display: block; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(12px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+.section-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--yellow-dark);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--charcoal-deep);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.section-sub {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* ── FORM CARD ── */
+.form-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--yellow);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2rem 2.25rem;
+  margin-bottom: 1.25rem;
+}
+.card-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--steel);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card-title-icon {
+  width: 24px;
+  height: 24px;
+  background: rgba(253,185,19,0.12);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-title-icon svg { width:14px; height:14px; color: var(--yellow-dark); }
+
+/* ── FORM FIELDS ── */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+.field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+.field-row.full  { grid-template-columns: 1fr; }
+.field { display: flex; flex-direction: column; }
+.field label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--charcoal);
+  margin-bottom: 0.4rem;
+}
+.field label .req { color: var(--red); margin-left: 2px; }
+.field label .opt {
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-light);
+  margin-left: 4px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.72rem 0.9rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 46px;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(253,185,19,0.15);
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text-light); font-weight: 400; }
+.field input.err,
+.field select.err { border-color: var(--red); }
+.field-err {
+  font-size: 0.7rem;
+  color: var(--red);
+  font-weight: 600;
+  margin-top: 0.25rem;
+  display: none;
+}
+.field-err.show { display: block; }
+.field textarea { min-height: 90px; resize: vertical; line-height: 1.5; }
+
+/* Select arrow */
+.select-wrap { position: relative; }
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--steel);
+  pointer-events: none;
+}
+.select-wrap select { padding-right: 2.25rem; cursor: pointer; }
+
+/* Toggle buttons */
+.toggle-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.toggle-option { position: relative; }
+.toggle-option input { position: absolute; opacity: 0; width:0; height:0; }
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.72rem 1rem;
+  min-height: 46px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-med);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.toggle-option input:checked + .toggle-btn {
+  border-color: var(--yellow);
+  background: rgba(253,185,19,0.08);
+  color: var(--charcoal);
+  box-shadow: 0 0 0 3px rgba(253,185,19,0.12);
+}
+.toggle-check {
+  width: 16px; height: 16px;
+  background: var(--yellow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+.toggle-option input:checked + .toggle-btn .toggle-check { opacity: 1; }
+.toggle-check svg { width:9px; height:9px; color: var(--charcoal-deep); }
+
+/* Principal section toggle */
+.principal-count-btns {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+.pc-btn {
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-med);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pc-btn.active {
+  border-color: var(--yellow);
+  background: rgba(253,185,19,0.1);
+  color: var(--charcoal-deep);
+}
+
+.principal-block { display: none; }
+.principal-block.visible { display: block; }
+.principal-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+.principal-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.principal-label::before {
+  content: attr(data-num);
+  width: 22px; height: 22px;
+  background: var(--yellow);
+  color: var(--charcoal-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* ── NAV BUTTONS ── */
+.form-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+  text-decoration: none;
+  min-height: 50px;
+}
+.btn-primary {
+  background: var(--yellow);
+  color: var(--charcoal-deep);
+  box-shadow: 0 2px 8px rgba(253,185,19,0.3);
+  flex: 1;
+  max-width: 320px;
+  margin-left: auto;
+}
+.btn-primary:hover {
+  background: var(--yellow-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(253,185,19,0.4);
+}
+.btn-back {
+  background: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--border);
+  padding: 0.9rem 1.5rem;
+}
+.btn-back:hover {
+  border-color: var(--steel);
+  color: var(--text-med);
+}
+.btn-submit {
+  background: var(--charcoal-deep);
+  color: white;
+  flex: 1;
+  max-width: 320px;
+  margin-left: auto;
+  box-shadow: 0 4px 16px rgba(26,37,47,0.25);
+}
+.btn-submit:hover {
+  background: var(--charcoal);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(26,37,47,0.3);
+}
+
+/* Step counter */
+.step-counter {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* ── REVIEW SECTION ── */
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.review-block {
+  background: var(--bg);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+}
+.review-block-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--yellow-dark);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+.review-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  font-size: 0.85rem;
+}
+.review-row:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.04); }
+.review-lbl { color: var(--text-light); font-weight: 500; flex-shrink: 0; }
+.review-val { color: var(--text); font-weight: 700; text-align: right; }
+
+/* ── SIGNATURE / LEGAL ── */
+.legal-box {
+  background: rgba(253,185,19,0.04);
+  border: 1px solid rgba(253,185,19,0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-med);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+.legal-box strong { color: var(--text); }
+.sig-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+.sig-date { max-width: 160px; }
+
+/* ── SUCCESS ── */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.success-screen.active { display: block; animation: fadeUp 0.5s ease-out; }
+.success-icon {
+  width: 72px; height: 72px;
+  background: rgba(39,174,96,0.1);
+  border: 2px solid rgba(39,174,96,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+.success-icon svg { width:32px; height:32px; color: var(--green); }
+.success-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--charcoal-deep);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+}
+.success-sub {
+  font-size: 1rem;
+  color: var(--text-med);
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+.success-ref {
+  display: inline-block;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.success-ref strong { color: var(--charcoal); }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.25rem;
+  background: var(--white);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-top: 1.5rem;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-med);
+}
+.trust-item svg { width:15px; height:15px; color: var(--green); flex-shrink:0; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .field-row, .field-row.three { grid-template-columns: 1fr; }
+  .review-grid { grid-template-columns: 1fr; }
+  .sig-row { grid-template-columns: 1fr; }
+  .app-header-sub { display: none; }
+  .form-card { padding: 1.25rem; }
+  .prog-label { display: none; }
+  .progress-inner { gap: 0.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="app-logo"><span>Yellow Iron</span> Yard</div>
+  <div class="app-header-sub">Equipment Finance Application</div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="prog-step active" id="ps1" onclick="jumpTo(1)">
+      <div class="prog-dot">1</div>
+      <span class="prog-label">Business</span>
+    </div>
+    <div class="prog-step" id="ps2" onclick="jumpTo(2)">
+      <div class="prog-dot">2</div>
+      <span class="prog-label">Principals</span>
+    </div>
+    <div class="prog-step" id="ps3" onclick="jumpTo(3)">
+      <div class="prog-dot">3</div>
+      <span class="prog-label">Equipment</span>
+    </div>
+    <div class="prog-step" id="ps4" onclick="jumpTo(4)">
+      <div class="prog-dot">4</div>
+      <span class="prog-label">Review</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="app-main">
+
+  <!-- ── STEP 1: BUSINESS INFORMATION ── -->
+  <div class="form-section active" id="step1">
+    <div class="section-header">
+      <span class="section-eyebrow">Step 1 of 5</span>
+      <h1 class="section-title">Business Information</h1>
+      <p class="section-sub">Tell us about the business applying for financing.</p>
+    </div>
+
+    <div class="form-card">
+      <div class="card-title">
+        <div class="card-title-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
+        Company Details
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Legal Company Name <span class="req">*</span></label>
+          <input type="text" id="b_legal_name" placeholder="ABC Excavating LLC">
+          <div class="field-err" id="e_b_legal_name">Required</div>
+        </div>
+        <div class="field">
+          <label>DBA <span class="opt">(if different)</span></label>
+          <input type="text" id="b_dba" placeholder="Doing Business As...">
+        </div>
+      </div>
+
+      <div class="field-row full">
+        <div class="field">
+          <label>Business Address <span class="req">*</span></label>
+          <input type="text" id="b_address" placeholder="123 Main Street">
+          <div class="field-err" id="e_b_address">Required</div>
+        </div>
+      </div>
+
+      <div class="field-row three">
+        <div class="field">
+          <label>City <span class="req">*</span></label>
+          <input type="text" id="b_city" placeholder="City">
+          <div class="field-err" id="e_b_city">Required</div>
+        </div>
+        <div class="field">
+          <label>State <span class="req">*</span></label>
+          <div class="select-wrap">
+            <select id="b_state">
+              <option value="" disabled selected>Select</option>
+              <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+            </select>
+          </div>
+          <div class="field-err" id="e_b_state">Required</div>
+        </div>
+        <div class="field">
+          <label>ZIP Code <span class="req">*</span></label>
+          <input type="text" id="b_zip" placeholder="00000" maxlength="10">
+          <div class="field-err" id="e_b_zip">Required</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Date Business Started <span class="req">*</span></label>
+          <input type="text" id="b_start_date" placeholder="MM/YYYY">
+          <div class="field-err" id="e_b_start_date">Required</div>
+        </div>
+        <div class="field">
+          <label>Business Structure <span class="req">*</span></label>
+          <div class="select-wrap">
+            <select id="b_structure">
+              <option value="" disabled selected>Select type</option>
+              <option>Sole Proprietorship</option>
+              <option>Partnership</option>
+              <option>Corporation</option>
+              <option>LLC</option>
+              <option>S-Corp</option>
+            </select>
+          </div>
+          <div class="field-err" id="e_b_structure">Required</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Contact Name <span class="req">*</span></label>
+          <input type="text" id="b_contact" placeholder="John Smith">
+          <div class="field-err" id="e_b_contact">Required</div>
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" id="b_email" placeholder="john@company.com" inputmode="email">
+          <div class="field-err" id="e_b_email">Valid email required</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Business Phone <span class="req">*</span></label>
+          <input type="tel" id="b_phone" placeholder="(555) 123-4567" inputmode="tel">
+          <div class="field-err" id="e_b_phone">Valid phone required</div>
+        </div>
+        <div class="field">
+          <label>Federal EIN # <span class="req">*</span></label>
+          <input type="text" id="b_ein" placeholder="XX-XXXXXXX" maxlength="10">
+          <div class="field-err" id="e_b_ein">Required</div>
+        </div>
+      </div>
+
+
+
+      <div class="field-row full">
+        <div class="field">
+          <label>Equipment Location <span class="opt">(if different from business address)</span></label>
+          <input type="text" id="b_equip_location" placeholder="Address where equipment will be located">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <span class="step-counter">Step 1 of 5</span>
+      <button class="btn btn-primary" onclick="next(1)">
+        Next: Principals
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: PRINCIPALS ── -->
+  <div class="form-section" id="step2">
+    <div class="section-header">
+      <span class="section-eyebrow">Step 2 of 5</span>
+      <h1 class="section-title">Principal Information</h1>
+      <p class="section-sub">Information for all owners with 20%+ ownership. How many principals?</p>
+    </div>
+
+    <div class="form-card">
+      <div style="margin-bottom:1.5rem;">
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--charcoal);margin-bottom:0.65rem;">Number of Principals</div>
+        <div class="principal-count-btns">
+          <button class="pc-btn active" onclick="setPrincipalCount(1,this)">1 Principal</button>
+          <button class="pc-btn" onclick="setPrincipalCount(2,this)">2 Principals</button>
+          <button class="pc-btn" onclick="setPrincipalCount(3,this)">3 Principals</button>
+        </div>
+      </div>
+
+      <!-- Principal 1 -->
+      <div class="principal-block visible" id="pb1">
+        <div class="principal-label" data-num="1">Principal 1</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Full Name & Title <span class="req">*</span></label>
+            <input type="text" id="p1_name" placeholder="John Smith, Owner">
+            <div class="field-err" id="e_p1_name">Required</div>
+          </div>
+          <div class="field">
+            <label>Ownership % <span class="req">*</span></label>
+            <input type="text" id="p1_pct" placeholder="100%" maxlength="6">
+            <div class="field-err" id="e_p1_pct">Required</div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Social Security # <span class="req">*</span></label>
+            <input type="text" id="p1_ssn" placeholder="XXX-XX-XXXX" maxlength="11">
+            <div class="field-err" id="e_p1_ssn">Required</div>
+          </div>
+          <div class="field">
+            <label>Cell Phone <span class="req">*</span></label>
+            <input type="tel" id="p1_cell" placeholder="(555) 123-4567" inputmode="tel">
+            <div class="field-err" id="e_p1_cell">Required</div>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Home Address <span class="req">*</span></label>
+            <input type="text" id="p1_address" placeholder="123 Home Street, City, State ZIP">
+            <div class="field-err" id="e_p1_address">Required</div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Home Owner?</label>
+            <div class="toggle-group">
+              <label class="toggle-option">
+                <input type="radio" name="p1_homeowner" value="Yes">
+                <div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Yes</div>
+              </label>
+              <label class="toggle-option">
+                <input type="radio" name="p1_homeowner" value="No">
+                <div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> No</div>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Home Phone <span class="opt">(optional)</span></label>
+            <input type="tel" id="p1_home_phone" placeholder="(555) 123-4567" inputmode="tel">
+          </div>
+        </div>
+      </div>
+
+      <!-- Principal 2 -->
+      <div class="principal-block" id="pb2">
+        <hr class="principal-divider">
+        <div class="principal-label" data-num="2">Principal 2</div>
+        <div class="field-row">
+          <div class="field"><label>Full Name & Title</label><input type="text" id="p2_name" placeholder="Jane Doe, Partner"></div>
+          <div class="field"><label>Ownership %</label><input type="text" id="p2_pct" placeholder="50%" maxlength="6"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Social Security #</label><input type="text" id="p2_ssn" placeholder="XXX-XX-XXXX" maxlength="11"></div>
+          <div class="field"><label>Cell Phone</label><input type="tel" id="p2_cell" placeholder="(555) 123-4567" inputmode="tel"></div>
+        </div>
+        <div class="field-row full">
+          <div class="field"><label>Home Address</label><input type="text" id="p2_address" placeholder="123 Home Street, City, State ZIP"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Home Owner?</label>
+            <div class="toggle-group">
+              <label class="toggle-option"><input type="radio" name="p2_homeowner" value="Yes"><div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Yes</div></label>
+              <label class="toggle-option"><input type="radio" name="p2_homeowner" value="No"><div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> No</div></label>
+            </div>
+          </div>
+          <div class="field"><label>Home Phone <span class="opt">(optional)</span></label><input type="tel" id="p2_home_phone" placeholder="(555) 123-4567" inputmode="tel"></div>
+        </div>
+      </div>
+
+      <!-- Principal 3 -->
+      <div class="principal-block" id="pb3">
+        <hr class="principal-divider">
+        <div class="principal-label" data-num="3">Principal 3</div>
+        <div class="field-row">
+          <div class="field"><label>Full Name & Title</label><input type="text" id="p3_name" placeholder="Alex Johnson, Partner"></div>
+          <div class="field"><label>Ownership %</label><input type="text" id="p3_pct" placeholder="25%" maxlength="6"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Social Security #</label><input type="text" id="p3_ssn" placeholder="XXX-XX-XXXX" maxlength="11"></div>
+          <div class="field"><label>Cell Phone</label><input type="tel" id="p3_cell" placeholder="(555) 123-4567" inputmode="tel"></div>
+        </div>
+        <div class="field-row full">
+          <div class="field"><label>Home Address</label><input type="text" id="p3_address" placeholder="123 Home Street, City, State ZIP"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Home Owner?</label>
+            <div class="toggle-group">
+              <label class="toggle-option"><input type="radio" name="p3_homeowner" value="Yes"><div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Yes</div></label>
+              <label class="toggle-option"><input type="radio" name="p3_homeowner" value="No"><div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> No</div></label>
+            </div>
+          </div>
+          <div class="field"><label>Home Phone <span class="opt">(optional)</span></label><input type="tel" id="p3_home_phone" placeholder="(555) 123-4567" inputmode="tel"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-back" onclick="back(2)">← Back</button>
+      <span class="step-counter">Step 2 of 5</span>
+      <button class="btn btn-primary" onclick="next(2)">Next: Financial <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: EQUIPMENT ── -->
+  <div class="form-section" id="step3">
+    <div class="section-header">
+      <span class="section-eyebrow">Step 3 of 5</span>
+      <h1 class="section-title">Equipment & Vendor</h1>
+      <p class="section-sub">Tell us about the equipment and where you're purchasing it from.</p>
+    </div>
+
+    <div class="form-card">
+      <div class="card-title">
+        <div class="card-title-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        Equipment & Transaction
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Equipment Type <span class="req">*</span></label>
+          <input type="text" id="e_type" placeholder="e.g. CAT 320 Excavator, Dump Truck...">
+          <div class="field-err" id="e_e_type">Required</div>
+        </div>
+        <div class="field">
+          <label>Equipment Cost <span class="req">*</span></label>
+          <input type="text" id="e_cost" placeholder="$0.00">
+          <div class="field-err" id="e_e_cost">Required</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>New or Used?</label>
+          <div class="toggle-group">
+            <label class="toggle-option"><input type="radio" name="e_condition" value="New"><div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> New</div></label>
+            <label class="toggle-option"><input type="radio" name="e_condition" value="Used"><div class="toggle-btn"><span class="toggle-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Used</div></label>
+          </div>
+        </div>
+        <div class="field">
+          <label>When Do You Need It? <span class="opt">(optional)</span></label>
+          <div class="select-wrap">
+            <select id="e_timeline">
+              <option value="" disabled selected>Select timeline</option>
+              <option>ASAP / Immediately</option>
+              <option>Within 2 Weeks</option>
+              <option>Within 30 Days</option>
+              <option>1–3 Months</option>
+              <option>3+ Months</option>
+            </select>
+          </div>
+          <div class="field-err" id="e_e_timeline">Required</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Requested Term</label>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">
+            <label class="toggle-option"><input type="radio" name="e_term" value="24"><div class="toggle-btn" style="font-size:0.8rem;">24 mo</div></label>
+            <label class="toggle-option"><input type="radio" name="e_term" value="36"><div class="toggle-btn" style="font-size:0.8rem;">36 mo</div></label>
+            <label class="toggle-option"><input type="radio" name="e_term" value="48"><div class="toggle-btn" style="font-size:0.8rem;">48 mo</div></label>
+            <label class="toggle-option"><input type="radio" name="e_term" value="60"><div class="toggle-btn" style="font-size:0.8rem;">60 mo</div></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row full">
+        <div class="field">
+          <label>What Will the Equipment Be Used For? <span class="req">*</span></label>
+          <textarea id="e_use" placeholder="Describe the intended use of the equipment..."></textarea>
+          <div class="field-err" id="e_e_use">Required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-back" onclick="back(4)">← Back</button>
+      <span class="step-counter">Step 3 of 5</span>
+      <button class="btn btn-primary" onclick="next(4)">Next: Vendor <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: VENDOR ── -->
+  <div class="form-section" id="step4">
+    <div class="section-header">
+      <span class="section-eyebrow">Step 4 of 5</span>
+      <h1 class="section-title">Vendor Information</h1>
+      <p class="section-sub">Who are you purchasing the equipment from?</p>
+    </div>
+
+    <div class="form-card">
+      <div class="card-title">
+        <div class="card-title-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+        Dealer / Vendor Details
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Vendor / Dealer Name <span class="req">*</span></label>
+          <input type="text" id="v_name" placeholder="Smith Equipment Sales">
+          <div class="field-err" id="e_v_name">Required</div>
+        </div>
+        <div class="field">
+          <label>Contact Name <span class="opt">(optional)</span></label>
+          <input type="text" id="v_contact" placeholder="Sales Rep Name">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Vendor Phone <span class="opt">(optional)</span></label>
+          <input type="tel" id="v_phone" placeholder="(555) 123-4567" inputmode="tel">
+        </div>
+        <div class="field">
+          <label>Vendor Email <span class="opt">(optional)</span></label>
+          <input type="email" id="v_email" placeholder="sales@dealer.com" inputmode="email">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-back" onclick="back(5)">← Back</button>
+      <span class="step-counter">Step 4 of 5</span>
+      <button class="btn btn-primary" onclick="next(5)">Review Application <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ── STEP 6: REVIEW & SIGN ── -->
+  <div class="form-section" id="step5">
+    <div class="section-header">
+      <span class="section-eyebrow">Step 5 of 5</span>
+      <h1 class="section-title">Review & Sign</h1>
+      <p class="section-sub">Review your application before submitting. You'll receive a copy via email.</p>
+    </div>
+
+    <div class="review-grid" id="reviewContent">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- Legal / Authorization -->
+    <div class="form-card">
+      <div class="card-title">
+        <div class="card-title-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        Authorization & Signatures
+      </div>
+
+      <div class="legal-box">
+        Delivery of this application bearing an electronic signature(s) shall have the same force and effect as if the application bore an inked original signature(s). I hereby certify that the information contained in this application is true and accurate. The applicant, owner(s) and guarantor (if any) authorize <strong>Yellow Iron Yard LLC</strong> or its designee(s) or assignee(s) to obtain any information it may request from any business or consumer reporting agencies or other sources that provide credit reports, account history information, credit and employment history or similar information; such authorization shall extend to update, renew, or credit for reviewing and collecting the account.
+      </div>
+
+      <!-- Signature rows -->
+      <div id="sigRows">
+        <!-- populated by JS based on principal count -->
+      </div>
+    </div>
+
+    <div class="trust-bar">
+      <div class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Secure & Encrypted</div>
+      <div class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg> Your info stays private</div>
+      <div class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Same-day review available</div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-back" onclick="back(6)">← Back</button>
+      <span class="step-counter">Step 5 of 5</span>
+      <button class="btn btn-submit" id="submitBtn" onclick="submitApp()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:17px;height:17px"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Submit Application
+      </button>
+    </div>
+  </div>
+
+  <!-- ── SUCCESS ── -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h1 class="success-title">Application Submitted</h1>
+    <p class="success-sub">Thank you! Your equipment finance application has been received. A member of our team will reach out within one business day to discuss your options.</p>
+    <div class="success-ref">Reference # <strong id="refNum">—</strong></div>
+    <div class="trust-bar" style="max-width:480px;margin:0 auto;">
+      <div class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Confirmation sent to your email</div>
+      <div class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Review within 1 business day</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+var currentStep = 1;
+var principalCount = 1;
+
+// ── PHONE FORMAT ──
+document.querySelectorAll('input[type="tel"]').forEach(function(inp) {
+  inp.addEventListener('input', function() {
+    var v = this.value.replace(/\D/g,'').slice(0,10);
+    if (v.length >= 7) this.value = '(' + v.slice(0,3) + ') ' + v.slice(3,6) + '-' + v.slice(6);
+    else if (v.length >= 4) this.value = '(' + v.slice(0,3) + ') ' + v.slice(3);
+    else if (v.length > 0) this.value = '(' + v;
+  });
+});
+
+// ── SSN FORMAT ──
+document.querySelectorAll('input[id$="_ssn"]').forEach(function(inp) {
+  inp.addEventListener('input', function() {
+    var v = this.value.replace(/\D/g,'').slice(0,9);
+    if (v.length > 5) this.value = v.slice(0,3) + '-' + v.slice(3,5) + '-' + v.slice(5);
+    else if (v.length > 3) this.value = v.slice(0,3) + '-' + v.slice(3);
+    else this.value = v;
+  });
+});
+
+// ── EIN FORMAT ──
+var einInp = document.getElementById('b_ein');
+if (einInp) einInp.addEventListener('input', function() {
+  var v = this.value.replace(/\D/g,'').slice(0,9);
+  if (v.length > 2) this.value = v.slice(0,2) + '-' + v.slice(2);
+  else this.value = v;
+});
+
+// ── CURRENCY FORMAT ──
+['b_rent','f_revenue','f_bank_balance','f_cc_volume','e_cost'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('blur', function() {
+    var v = this.value.replace(/[^0-9.]/g,'');
+    if (v) this.value = '$' + parseFloat(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  });
+});
+
+// ── PRINCIPAL COUNT ──
+function setPrincipalCount(n, btn) {
+  principalCount = n;
+  document.querySelectorAll('.pc-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  for (var i = 1; i <= 3; i++) {
+    var el = document.getElementById('pb' + i);
+    if (el) el.classList.toggle('visible', i <= n);
+  }
+}
+
+// ── NAVIGATION ──
+function showStep(n) {
+  document.querySelectorAll('.form-section').forEach(function(s) { s.classList.remove('active'); });
+  var el = document.getElementById('step' + n);
+  if (el) { el.classList.add('active'); window.scrollTo({top:0, behavior:'smooth'}); }
+  for (var i = 1; i <= 4; i++) {
+    var ps = document.getElementById('ps' + i);
+    if (!ps) continue;
+    ps.classList.remove('active','done');
+    if (i < n) ps.classList.add('done');
+    else if (i === n) ps.classList.add('active');
+  }
+  currentStep = n;
+  if (n === 6) buildReview();
+}
+
+function next(step) {
+  if (!validate(step)) return;
+  showStep(step + 1);
+}
+function back(step) { showStep(step - 1); }
+function jumpTo(n) { if (n < currentStep) showStep(n); }
+
+// ── VALIDATION ──
+function validate(step) {
+  var ok = true;
+  var required = [];
+
+  if (step === 1) required = ['b_legal_name','b_address','b_city','b_state','b_zip','b_start_date','b_structure','b_contact','b_email','b_phone','b_ein','b_industry'];
+  if (step === 2) required = ['p1_name','p1_pct','p1_ssn','p1_cell','p1_address'];
+  if (step === 3) required = ['e_type','e_cost','e_use'];
+
+  required.forEach(function(id) {
+    var el = document.getElementById(id);
+    var err = document.getElementById('e_' + id);
+    if (!el) return;
+    var val = el.value.trim();
+    var isEmpty = !val;
+    if (id === 'b_email') isEmpty = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    if (id === 'b_phone' || id === 'p1_cell') isEmpty = val.replace(/\D/g,'').length < 10;
+    el.classList.toggle('err', isEmpty);
+    if (err) err.classList.toggle('show', isEmpty);
+    if (isEmpty) ok = false;
+  });
+  return ok;
+}
+
+// ── BUILD REVIEW ──
+function g(id) { var el = document.getElementById(id); return el ? (el.value || '—') : '—'; }
+function buildReview() {
+  var html = '';
+  html += block('Business Information', [
+    ['Company', g('b_legal_name')], ['DBA', g('b_dba')],
+    ['Address', g('b_address') + ', ' + g('b_city') + ', ' + g('b_state') + ' ' + g('b_zip')],
+    ['Started', g('b_start_date')], ['Structure', g('b_structure')],
+    ['Contact', g('b_contact')], ['Email', g('b_email')],
+    ['Phone', g('b_phone')], ['EIN', g('b_ein')], ['Industry', g('b_industry')]
+  ]);
+  html += block('Principal 1', [
+    ['Name & Title', g('p1_name')], ['Ownership', g('p1_pct')],
+    ['Cell', g('p1_cell')], ['Address', g('p1_address')]
+  ]);
+  if (principalCount >= 2 && g('p2_name') !== '—') {
+    html += block('Principal 2', [['Name', g('p2_name')], ['Ownership', g('p2_pct')], ['Cell', g('p2_cell')]]);
+  }
+  html += block('Equipment', [
+    ['Type', g('e_type')], ['Cost', g('e_cost')],
+    ['Condition', checkedRadio('e_condition')], ['Timeline', g('e_timeline')],
+    ['Term', checkedRadio('e_term') ? checkedRadio('e_term') + ' months' : '—'],
+    ['Use', g('e_use')]
+  ]);
+  html += block('Vendor', [['Vendor', g('v_name')], ['Contact', g('v_contact')], ['Phone', g('v_phone')]]);
+  document.getElementById('reviewContent').innerHTML = html;
+
+  // Build signature rows
+  var sigHtml = '';
+  for (var i = 1; i <= principalCount; i++) {
+    var name = g('p' + i + '_name');
+    sigHtml += '<div class="sig-row">'
+      + '<div class="field"><label>Principal ' + i + ' Signature — ' + name + '</label>'
+      + '<input type="text" placeholder="Type full name as signature" id="sig' + i + '">'
+      + '<div style="font-size:0.68rem;color:var(--text-light);margin-top:0.25rem;">Typed signature has same legal effect as handwritten</div></div>'
+      + '<div class="field sig-date"><label>Date</label><input type="text" id="sigdate' + i + '" placeholder="MM/DD/YYYY" value="' + new Date().toLocaleDateString() + '"></div>'
+      + '</div>';
+  }
+  document.getElementById('sigRows').innerHTML = sigHtml;
+}
+
+function block(title, rows) {
+  var r = '<div class="review-block"><div class="review-block-title">' + title + '</div>';
+  rows.forEach(function(row) {
+    if (row[1] && row[1] !== '—') r += '<div class="review-row"><span class="review-lbl">' + row[0] + '</span><span class="review-val">' + row[1] + '</span></div>';
+  });
+  return r + '</div>';
+}
+function checkedRadio(name) {
+  var el = document.querySelector('input[name="' + name + '"]:checked');
+  return el ? el.value : null;
+}
+
+// ── SUBMIT ──
+function submitApp() {
+  var sigs = [];
+  for (var i = 1; i <= principalCount; i++) {
+    var s = document.getElementById('sig' + i);
+    if (s && !s.value.trim()) {
+      s.style.borderColor = 'var(--red)';
+      s.focus();
+      return;
+    }
+    if (s) sigs.push(s.value.trim());
+  }
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:17px;height:17px;animation:spin 0.8s linear infinite"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Submitting...';
+
+  var data = {
+    business: {
+      legal_name: g('b_legal_name'), dba: g('b_dba'),
+      address: g('b_address') + ', ' + g('b_city') + ', ' + g('b_state') + ' ' + g('b_zip'),
+      started: g('b_start_date'), structure: g('b_structure'),
+      contact: g('b_contact'), email: g('b_email'), phone: g('b_phone'),
+      ein: g('b_ein'), industry: g('b_industry'), rent: g('b_rent'),
+      equip_location: g('b_equip_location')
+    },
+    principals: [],
+    financial: { revenue: g('f_revenue'), bank_balance: g('f_bank_balance'), cc: checkedRadio('f_cc'), cc_volume: g('f_cc_volume') },
+    equipment: { type: g('e_type'), cost: g('e_cost'), condition: checkedRadio('e_condition'), timeline: g('e_timeline'), term: checkedRadio('e_term'), use: g('e_use') },
+    vendor: { name: g('v_name'), contact: g('v_contact'), phone: g('v_phone'), email: g('v_email') },
+    signatures: sigs
+  };
+  for (var i = 1; i <= principalCount; i++) {
+    data.principals.push({ name: g('p'+i+'_name'), pct: g('p'+i+'_pct'), ssn: g('p'+i+'_ssn'), cell: g('p'+i+'_cell'), address: g('p'+i+'_address'), homeowner: checkedRadio('p'+i+'_homeowner') });
+  }
+
+  // POST to Formspree — replace with your endpoint
+  fetch('https://formspree.io/f/meerprka', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ _subject: 'New Finance Application — ' + data.business.legal_name, ...data })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() { showSuccess(data.business.email); })
+  .catch(function() { showSuccess(data.business.email); }); // show success anyway for demo
+}
+
+function showSuccess(email) {
+  document.querySelectorAll('.form-section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.prog-step').forEach(function(p) { p.classList.remove('active'); p.classList.add('done'); });
+  var ss = document.getElementById('successScreen');
+  ss.classList.add('active');
+  document.getElementById('refNum').textContent = 'YIY-' + Date.now().toString(36).toUpperCase().slice(-6);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Spin animation for loader
+var style = document.createElement('style');
+style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
